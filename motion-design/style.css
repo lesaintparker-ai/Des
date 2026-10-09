@@ -1,0 +1,156 @@
+@font-face { font-family: "Jakarta"; src: url(fonts/PlusJakartaSans.woff2) format("woff2"); font-weight: 200 800; }
+@font-face { font-family: "Outfit"; src: url(fonts/Outfit.woff2) format("woff2"); font-weight: 100 900; }
+
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: #000; overflow: hidden; }
+
+#viewport { position: fixed; inset: 0 0 56px 0; display: flex; align-items: center; justify-content: center; }
+body.render #viewport { inset: 0; align-items: flex-start; justify-content: flex-start; }
+
+#stage {
+  position: relative; flex: none; overflow: hidden;
+  font-family: "Jakarta", system-ui, "Noto Color Emoji", sans-serif; color: #fff;
+  background: radial-gradient(ellipse 90% 70% at 50% 42%, var(--bgCenter), var(--bgEdge));
+  perspective: 2600px; perspective-origin: 50% 45%;
+}
+.emoji { font-family: "Noto Color Emoji", "Apple Color Emoji", "Segoe UI Emoji", sans-serif; font-weight: 400; }
+
+.abs { position: absolute; left: 0; top: 0; }
+.scene { position: absolute; inset: 0; transform-style: preserve-3d; display: none; }
+.p3d { transform-style: preserve-3d; }
+.clip { overflow: hidden; padding-bottom: .1em; }
+.clip > * { display: block; }
+.out { font-family: "Outfit", "Jakarta", sans-serif; }
+
+/* ── Background ─────────────────────────── */
+#bg-pattern { position: absolute; left: -200px; top: -200px; opacity: .08; }
+#bg-glow { position: absolute; width: 1500px; height: 1500px; left: 0; top: 0; border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent) 40%, transparent), transparent 65%); opacity: .35; }
+#vignette { position: absolute; inset: 0; background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,.5)); pointer-events: none; }
+#fade { position: absolute; inset: 0; background: #000; pointer-events: none; }
+
+/* ── Logo ───────────────────────────────── */
+.mark svg, .mark img { width: 100%; height: 100%; display: block; }
+.brand-pill { display: inline-flex; align-items: center; gap: 18px; background: #fff; color: var(--accentDark); border-radius: 99px; padding: 12px 40px 12px 12px; font-family: "Outfit"; font-weight: 700; font-size: 54px; letter-spacing: -1px; box-shadow: 0 30px 70px rgba(0,0,0,.4); white-space: nowrap; }
+.brand-pill .mark { width: 80px; height: 80px; }
+
+/* ── Persona ────────────────────────────── */
+#persona { display: flex; flex-direction: column; align-items: center; gap: 30px; transform-origin: 0 0; text-align: center; }
+#persona .avatar { width: 300px; height: 300px; border-radius: 50%; overflow: hidden; box-shadow: 0 24px 70px rgba(0,0,0,.45); }
+#persona .avatar img, #persona .avatar svg { width: 100%; height: 100%; object-fit: cover; display: block; }
+#persona .pname { font-family: "Outfit"; font-size: 150px; font-weight: 800; letter-spacing: -4px; line-height: 1; }
+#persona .prole { font-size: 40px; font-weight: 700; color: var(--gold); margin-top: 8px; white-space: nowrap; }
+#badge { display: flex; align-items: center; gap: 18px; }
+#badge .avatar { width: 92px; height: 92px; border-radius: 50%; overflow: hidden; }
+#badge .avatar svg, #badge .avatar img { width: 100%; height: 100%; display: block; }
+#badge .bn { font-family: "Outfit"; font-size: 40px; font-weight: 800; line-height: 1; }
+#badge .br { font-size: 22px; font-weight: 600; color: var(--gold); margin-top: 6px; white-space: nowrap; }
+
+/* ── Hook ───────────────────────────────── */
+.alert { width: 820px; display: flex; align-items: center; gap: 30px; background: rgba(255,255,255,.96); color: var(--ink); border-radius: 36px; padding: 30px 36px; box-shadow: 0 30px 80px rgba(0,0,0,.45); }
+.alert .ai { width: 96px; height: 96px; border-radius: 28px; background: var(--danger); display: flex; align-items: center; justify-content: center; flex: none; }
+.alert .at { font-size: 40px; font-weight: 800; }
+.alert .as { font-size: 28px; font-weight: 600; color: #6b7a70; margin-top: 4px; }
+.big { font-family: "Outfit"; font-weight: 800; font-size: 104px; line-height: 1.02; letter-spacing: -3px; text-align: center; }
+.big .g { color: var(--gold); }
+.hlbox { position: relative; display: inline-block; color: var(--gold); }
+.hlbox .ul { position: absolute; left: 0; right: 0; bottom: 4px; height: 16px; border-radius: 8px; background: var(--gold); opacity: .35; transform-origin: 0 50%; }
+.pill { display: inline-flex; align-items: center; gap: 14px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); border-radius: 99px; padding: 16px 30px; font-size: 32px; font-weight: 700; white-space: nowrap; }
+.pill i { width: 18px; height: 18px; border-radius: 50%; background: var(--gold); display: block; }
+.net { display: inline-flex; align-items: center; gap: 14px; background: #fff; color: var(--ink); border-radius: 99px; padding: 16px 34px; font-size: 36px; font-weight: 800; box-shadow: 0 16px 40px rgba(0,0,0,.3); white-space: nowrap; }
+.net i { width: 22px; height: 22px; border-radius: 50%; display: block; }
+
+/* ── Phone + WhatsApp ───────────────────── */
+.phone { width: 720px; height: 1440px; border-radius: 92px; background: #050807; padding: 18px; box-shadow: 0 80px 160px rgba(0,0,0,.6), 0 0 0 4px #27302b inset; }
+.screen { width: 100%; height: 100%; border-radius: 76px; overflow: hidden; position: relative; background: #0b141a; display: flex; flex-direction: column; }
+.sb { height: 74px; flex: none; display: flex; align-items: flex-end; justify-content: space-between; padding: 0 56px 8px; font-size: 26px; font-weight: 700; color: #e9edef; background: #121b22; }
+.wa-head { height: 112px; flex: none; background: #121b22; display: flex; align-items: center; gap: 22px; padding: 0 30px; color: #e9edef; }
+.wa-head .mark { width: 72px; height: 72px; }
+.wa-head .hn { font-size: 34px; font-weight: 700; }
+.wa-head .hs { font-size: 22px; color: #8696a0; font-weight: 500; }
+.chat { flex: 1; position: relative; overflow: hidden;
+  background-color: #0b141a;
+  background-image: radial-gradient(rgba(255,255,255,.035) 2px, transparent 2.5px); background-size: 34px 34px; }
+.col { position: absolute; left: 0; right: 0; top: 0; padding: 24px 26px; display: flex; flex-direction: column; gap: 14px; }
+.msg { max-width: 82%; border-radius: 22px; padding: 16px 20px 12px; font-size: 27px; line-height: 1.38; color: #e9edef; position: relative; transform-origin: 0 100%; }
+.msg.in { align-self: flex-start; background: #1f2c34; border-top-left-radius: 6px; }
+.msg.me { align-self: flex-end; background: #005c4b; border-top-right-radius: 6px; transform-origin: 100% 100%; }
+.msg .tm { display: block; text-align: right; font-size: 19px; color: rgba(233,237,239,.6); margin-top: 4px; }
+.msg .tm b { color: #53bdeb; font-weight: 700; margin-left: 6px; }
+.msg .q { border-left: 5px solid #06cf9c; background: rgba(0,0,0,.18); border-radius: 10px; padding: 8px 14px; margin-bottom: 8px; font-size: 23px; color: rgba(233,237,239,.75); }
+.msg .q b { color: #06cf9c; display: block; font-size: 22px; }
+.msg .bt { margin: 12px -20px -12px; border-top: 1px solid rgba(255,255,255,.08); }
+.msg .bt div { height: 66px; display: flex; align-items: center; justify-content: center; gap: 12px; color: #21c063; font-weight: 700; font-size: 27px; border-bottom: 1px solid rgba(255,255,255,.08); }
+.msg .bt div:last-child { border-bottom: 0; }
+.msg i.it { color: rgba(233,237,239,.8); }
+.msg .tot { color: #fff; font-weight: 800; }
+.wa-input { height: 116px; flex: none; display: flex; align-items: center; gap: 16px; padding: 0 22px 18px; background: #0b141a; }
+.wa-input .box { flex: 1; height: 82px; border-radius: 41px; background: #1f2c34; display: flex; align-items: center; padding: 0 30px; font-size: 28px; color: #8696a0; }
+.wa-input .box .tx { color: #e9edef; }
+.wa-input .send { width: 82px; height: 82px; border-radius: 50%; background: #21c063; display: flex; align-items: center; justify-content: center; }
+.caret { display: inline-block; width: 3px; height: 32px; background: #21c063; margin-left: 3px; vertical-align: middle; }
+.tap { position: absolute; width: 110px; height: 110px; margin: -55px 0 0 -55px; border-radius: 50%; background: rgba(255,255,255,.35); border: 4px solid rgba(255,255,255,.8); z-index: 30; opacity: 0; pointer-events: none; }
+
+.sheet { position: absolute; left: 0; right: 0; bottom: 0; height: 1040px; background: #fff; color: #111; border-radius: 44px 44px 0 0; padding: 40px 40px; z-index: 10; }
+.sheet .sh-top { display: flex; align-items: center; gap: 16px; }
+.sheet .sh-top .mark { width: 66px; height: 66px; }
+.sheet .sh-name { font-size: 32px; font-weight: 800; }
+.sheet .sh-amt { margin-left: auto; text-align: right; }
+.sheet .sh-amt small { display: block; font-size: 16px; color: #8a8f88; font-weight: 700; letter-spacing: 1px; }
+.sheet .sh-amt b { font-size: 46px; color: #4b3df0; font-weight: 800; }
+.sheet h3 { font-size: 38px; margin: 34px 0 22px; }
+.pm { height: 104px; border-radius: 22px; border: 2px solid #eceee8; display: flex; align-items: center; gap: 22px; padding: 0 26px; margin-bottom: 16px; font-size: 28px; font-weight: 800; }
+.pm .pi { width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 26px; }
+.pm .chev { margin-left: auto; color: #b5b9b3; font-size: 34px; }
+.paydone { position: absolute; inset: 0; background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 30px; border-radius: 44px 44px 0 0; }
+.paydone .pc { width: 200px; height: 200px; }
+.paydone b { font-size: 44px; }
+.paydone span { font-size: 28px; color: #6b7a70; font-weight: 600; }
+.notif { position: absolute; left: 22px; right: 22px; top: 20px; z-index: 20; background: rgba(40,48,44,.97); border-radius: 34px; padding: 22px 26px; display: flex; gap: 20px; align-items: center; color: #fff; box-shadow: 0 20px 50px rgba(0,0,0,.5); }
+.notif .ni { width: 70px; height: 70px; border-radius: 18px; background: #ff7900; flex: none; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 24px; }
+.notif b { font-size: 26px; display: block; }
+.notif span { font-size: 24px; color: rgba(255,255,255,.8); }
+
+.step { display: inline-flex; align-items: center; gap: 18px; background: #fff; color: var(--ink); border-radius: 99px; padding: 12px 30px 12px 12px; font-size: 32px; font-weight: 800; box-shadow: 0 16px 40px rgba(0,0,0,.35); white-space: nowrap; }
+.step .sn { width: 58px; height: 58px; border-radius: 50%; background: var(--gold); color: var(--ink); display: flex; align-items: center; justify-content: center; font-family: "Outfit"; font-size: 34px; font-weight: 800; }
+.chrono { display: inline-flex; align-items: center; gap: 14px; background: var(--accentDark); border: 2px solid rgba(255,255,255,.25); border-radius: 99px; padding: 14px 28px; font-family: "Outfit"; font-size: 40px; font-weight: 700; white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+/* ── Confirmation ───────────────────────── */
+.big-check { width: 360px; height: 360px; }
+.ring { position: absolute; width: 360px; height: 360px; border-radius: 50%; border: 4px solid var(--accent); }
+.confetti { position: absolute; left: 0; top: 0; border-radius: 3px; }
+
+/* ── Features ───────────────────────────── */
+.f-label { font-size: 30px; font-weight: 800; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); }
+.f-num { font-family: "Outfit"; font-weight: 800; font-size: 230px; line-height: .9; color: var(--gold); letter-spacing: -8px; }
+.f-of { font-family: "Outfit"; font-weight: 600; font-size: 44px; color: rgba(255,255,255,.4); }
+.f-title { font-family: "Outfit"; font-size: 96px; font-weight: 800; letter-spacing: -2.5px; line-height: 1.02; white-space: nowrap; }
+.f-sub { font-size: 40px; font-weight: 600; color: rgba(255,255,255,.75); line-height: 1.35; width: 900px; }
+.f-sub .hl { color: var(--gold); }
+.dashes { display: flex; gap: 14px; align-items: center; }
+.dashes i { height: 9px; width: 36px; border-radius: 5px; background: rgba(255,255,255,.22); display: block; }
+.fcard { width: 880px; height: 780px; border-radius: 56px; background: var(--card); color: var(--ink); overflow: hidden; position: relative; box-shadow: 0 70px 140px rgba(0,0,0,.5), inset 0 0 0 1px rgba(255,255,255,.8); }
+.fcard::before { content: ""; position: absolute; width: 520px; height: 520px; right: -160px; top: -200px; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--accent) 40%, transparent), transparent 70%); }
+.vis { position: absolute; inset: 0; }
+.ui { position: absolute; background: #fff; border-radius: 30px; box-shadow: 0 24px 60px rgba(11,46,34,.14); }
+.row { display: flex; align-items: center; gap: 20px; }
+.dot { width: 22px; height: 22px; border-radius: 50%; display: block; flex: none; }
+.bubble { position: absolute; width: 190px; height: 190px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 36px; box-shadow: 0 24px 50px rgba(0,0,0,.18); }
+
+/* ── Stats ──────────────────────────────── */
+.stat { width: 860px; height: 300px; border-radius: 48px; padding: 50px 60px; background: linear-gradient(135deg, #0f7a5a, #229670); box-shadow: 0 40px 90px rgba(0,0,0,.4), inset 0 0 0 1px rgba(255,255,255,.15); display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
+.stat b { font-family: "Outfit"; font-size: 140px; font-weight: 800; color: var(--gold); line-height: .95; letter-spacing: -3px; }
+.stat span { font-size: 38px; font-weight: 700; color: rgba(255,255,255,.9); margin-top: 10px; }
+
+/* ── Outro ──────────────────────────────── */
+.cta { display: inline-flex; align-items: center; gap: 22px; background: #fff; color: var(--accentDark); border-radius: 99px; padding: 28px 48px; font-size: 44px; font-weight: 800; box-shadow: 0 30px 70px rgba(0,0,0,.4); white-space: nowrap; }
+.cta .wa { width: 64px; height: 64px; border-radius: 50%; background: #21c063; display: flex; align-items: center; justify-content: center; }
+.url { font-family: "Outfit"; font-size: 52px; font-weight: 700; color: var(--gold); letter-spacing: .5px; }
+.tagline { font-family: "Outfit"; font-size: 70px; font-weight: 800; letter-spacing: -1.5px; text-align: center; white-space: nowrap; }
+.sub2 { font-size: 34px; font-weight: 600; color: rgba(255,255,255,.75); white-space: nowrap; }
+
+/* ── Controls (aperçu) ──────────────────── */
+#controls { position: fixed; left: 0; right: 0; bottom: 0; height: 56px; display: flex; align-items: center; gap: 16px; padding: 0 16px; background: #111; color: #ddd; font: 14px system-ui, sans-serif; }
+#controls button { background: #1f9a6e; color: #fff; border: 0; border-radius: 8px; padding: 8px 16px; font-weight: 700; cursor: pointer; }
+#controls input { flex: 1; accent-color: #1f9a6e; }
+body.render #controls { display: none; }

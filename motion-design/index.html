@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Motion design</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="viewport"><div id="stage"></div></div>
+  <div id="controls">
+    <button id="play">Pause</button>
+    <input id="scrub" type="range" min="0" max="1000" value="0">
+    <span id="time">0.00 s</span>
+  </div>
+  <script src="config.js"></script>
+  <script src="scenes.js"></script>
+  <script>
+    // Aperçu dans le navigateur. Le rendu MP4 (render.mjs) pilote MD.renderAt(t) image par image.
+    (function () {
+      const render = new URLSearchParams(location.search).has("render");
+      if (render) document.body.classList.add("render");
+      const stage = document.getElementById("stage");
+      const W = MD_CONFIG.width, H = MD_CONFIG.height;
+      stage.style.width = W + "px"; stage.style.height = H + "px";
+      const fit = () => {
+        const vp = document.getElementById("viewport");
+        const s = Math.min(vp.clientWidth / W, vp.clientHeight / H);
+        stage.style.margin = render ? "0" : `${(H * s - H) / 2}px ${(W * s - W) / 2}px`;
+        stage.style.transform = render ? "none" : `scale(${s})`;
+      };
+      addEventListener("resize", fit);
+      fit();
+      document.fonts.ready.then(() => {
+        MD.init(stage);
+        if (render) { window.MD_READY = true; return; }
+        const scrub = document.getElementById("scrub"), btn = document.getElementById("play"), label = document.getElementById("time");
+        let playing = true, t = 0, last = performance.now();
+        btn.onclick = () => { playing = !playing; btn.textContent = playing ? "Pause" : "Lecture"; last = performance.now(); };
+        scrub.oninput = () => { t = scrub.value / 1000 * MD.duration; };
+        (function loop(now) {
+          if (playing) { t += (now - last) / 1000; if (t > MD.duration) t = 0; }
+          last = now;
+          MD.renderAt(t);
+          scrub.value = t / MD.duration * 1000;
+          label.textContent = t.toFixed(2) + " s";
+          requestAnimationFrame(loop);
+        })(last);
+      });
+    })();
+  </script>
+</body>
+</html>
