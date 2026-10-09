@@ -1,6 +1,7 @@
 // Rendu MP4 image par image.
 //   node render.mjs                      → out/suura-motion.mp4 (vidéo + bruitages)
-//   node render.mjs --no-audio           → sans bruitages
+//   node render.mjs --no-audio           → vidéo muette
+//   node render.mjs --no-voice           → bruitages seuls, sans la voix off
 //   node render.mjs --frames 2,8.5,30    → captures PNG à ces instants (contrôle visuel)
 //   node render.mjs --from 6 --to 12     → rendu partiel
 import { createRequire } from "node:module";
@@ -30,7 +31,7 @@ const page = await browser.newPage({ viewport: { width: 1080, height: 1920 }, de
 page.on("pageerror", e => console.error("Erreur page :", e.message));
 await page.goto(pathToFileURL(path.join(dir, "index.html")).href + "?render=1");
 await page.waitForFunction(() => window.MD_READY === true);
-const { duration, fps, w, h, sfx } = await page.evaluate(() => ({ duration: MD.duration, fps: MD.fps, w: MD_CONFIG.width, h: MD_CONFIG.height, sfx: MD.sfx }));
+const { duration, fps, w, h, sfx, voice } = await page.evaluate(() => ({ duration: MD.duration, fps: MD.fps, w: MD_CONFIG.width, h: MD_CONFIG.height, sfx: MD.sfx, voice: MD_CONFIG.voice || null }));
 await page.setViewportSize({ width: w, height: h });
 const stage = await page.$("#stage");
 
@@ -49,12 +50,19 @@ if (shots) {
 const from = Number(opt("--from", 0)), to = Math.min(Number(opt("--to", duration)), duration);
 const total = Math.round((to - from) * fps);
 
-// ── Bruitages synthétisés (pop, whoosh, ding…) calés sur les animations ──
+// ── Audio : voix off + bruitages synthétisés (pop, whoosh, ding…) calés sur les animations ──
 let audioArgs = [];
 if (!args.includes("--no-audio")) {
   const wav = path.join(path.dirname(out), "sfx.wav");
   writeWav(wav, synth(sfx.filter(s => s.t >= from && s.t < to).map(s => ({ ...s, t: s.t - from })), to - from));
-  audioArgs = ["-i", wav, "-map", "0:v", "-map", "1:a", "-c:a", "aac", "-b:a", "192k", "-shortest"];
+  const voiceFile = voice?.file && !args.includes("--no-voice") ? path.join(dir, voice.file) : null;
+  if (voiceFile && fs.existsSync(voiceFile)) {
+    audioArgs = ["-i", wav, "-ss", String(from), "-i", voiceFile, "-filter_complex",
+      `[1:a]volume=${voice.sfxVolume ?? .35}[s];[2:a]volume=${voice.volume ?? 1},apad[v];[v][s]amix=inputs=2:duration=shortest:normalize=0,alimiter=limit=0.95[a]`,
+      "-map", "0:v", "-map", "[a]", "-c:a", "aac", "-b:a", "192k", "-shortest"];
+  } else {
+    audioArgs = ["-i", wav, "-map", "0:v", "-map", "1:a", "-c:a", "aac", "-b:a", "192k", "-shortest"];
+  }
 }
 
 const ff = spawn("ffmpeg", ["-y", "-loglevel", "error", "-f", "image2pipe", "-framerate", String(fps), "-i", "-", ...audioArgs,
@@ -84,6 +92,7 @@ function synth(events, dur) {
   const S = {
     pop: t => tone(t, 620, 1150, .09, .32, 40),
     send: t => tone(t, 480, 900, .07, .22, 45),
+    tick: t => tone(t, 1500, 1700, .05, .14, 60),
     tap: t => { add(t, .02, () => rnd() * .18); tone(t, 1900, 1500, .04, .12, 90); },
     whoosh: t => { let lp = 0; add(t, .45, x => { const p = x / .45, a = .55 * Math.sin(Math.PI * p) ** 2, c = .02 + .25 * Math.sin(Math.PI * p); lp += c * (rnd() - lp); return lp * a; }); },
     ding: t => { tone(t, 1318.5, 1318.5, 1.1, .22, 4.5); tone(t, 1975.5, 1975.5, 1.1, .1, 6); },

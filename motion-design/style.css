@@ -32,7 +32,8 @@ body.render #viewport { inset: 0; align-items: flex-start; justify-content: flex
 /* ── Logo ───────────────────────────────── */
 .mark svg, .mark img { width: 100%; height: 100%; display: block; }
 .brand-pill { display: inline-flex; align-items: center; gap: 18px; background: #fff; color: var(--accentDark); border-radius: 99px; padding: 12px 40px 12px 12px; font-family: "Outfit"; font-weight: 700; font-size: 54px; letter-spacing: -1px; box-shadow: 0 30px 70px rgba(0,0,0,.4); white-space: nowrap; }
-.brand-pill .mark { width: 80px; height: 80px; }
+.brand-pill .mark { width: 80px; height: 80px; flex: none; }
+.mark { display: block; flex: none; }
 
 /* ── Persona ────────────────────────────── */
 #persona { display: flex; flex-direction: column; align-items: center; gap: 30px; transform-origin: 0 0; text-align: center; }
@@ -80,7 +81,7 @@ body.render #viewport { inset: 0; align-items: flex-start; justify-content: flex
 .msg .q { border-left: 5px solid #06cf9c; background: rgba(0,0,0,.18); border-radius: 10px; padding: 8px 14px; margin-bottom: 8px; font-size: 23px; color: rgba(233,237,239,.75); }
 .msg .q b { color: #06cf9c; display: block; font-size: 22px; }
 .msg .bt { margin: 12px -20px -12px; border-top: 1px solid rgba(255,255,255,.08); }
-.msg .bt div { height: 66px; display: flex; align-items: center; justify-content: center; gap: 12px; color: #21c063; font-weight: 700; font-size: 27px; border-bottom: 1px solid rgba(255,255,255,.08); }
+.msg .bt div { min-height: 66px; padding: 8px 14px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 12px; color: #21c063; font-weight: 700; font-size: 27px; border-bottom: 1px solid rgba(255,255,255,.08); }
 .msg .bt div:last-child { border-bottom: 0; }
 .msg i.it { color: rgba(233,237,239,.8); }
 .msg .tot { color: #fff; font-weight: 800; }

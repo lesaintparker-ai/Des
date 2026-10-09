@@ -8,11 +8,13 @@ window.MD_CONFIG = {
   width: 1080,
   height: 1920,
 
+  // Voix off (ElevenLabs). L'animation est calée sur ses phrases : voir TIMELINE dans scenes.js
+  voice: { file: "assets/voix-off.mp3", volume: 1.0, sfxVolume: 0.35 },
+
   brand: {
     name: "Suura",
-    // Mettez ici votre vrai logo (ex : "assets/logo.svg") ; null = logo redessiné
-    logo: null,
-    tagline: "La solution qui vous connecte.",
+    logo: "assets/suura.png",
+    tagline: "La solution qui te connecte.",
     url: "suura.app",
     cta: "Écris « Bonjour Suura »",
     ctaSub: "sur WhatsApp ou Telegram",
@@ -22,7 +24,7 @@ window.MD_CONFIG = {
     bgCenter: "#0d6a4e",
     bgEdge: "#021f16",
     accent: "#1f9a6e",
-    accentDark: "#0b5a45",
+    accentDark: "#106e56",
     gold: "#f5c518",
     card: "#f0f8f2",
     ink: "#0b2e22",
@@ -48,9 +50,9 @@ window.MD_CONFIG = {
   },
 
   networks: [
-    { name: "Orange", color: "#ff7900" },
-    { name: "MTN", color: "#ffcb05" },
-    { name: "Moov", color: "#0a8fd6" },
+    { name: "Orange", color: "#ff7900", logo: "assets/orange.png" },
+    { name: "MTN", color: "#ffcb05", logo: "assets/mtn.png" },
+    { name: "Moov", color: "#0066b3", logo: "assets/moov.png" },
   ],
 
   // Conversation WhatsApp (reprise du vrai parcours Suura)
@@ -65,28 +67,29 @@ window.MD_CONFIG = {
   },
 
   payMethods: [
-    { name: "Wave", color: "#1dc8f2" },
-    { name: "Orange Money", color: "#ff7900" },
-    { name: "Djamo", color: "#111111" },
-    { name: "Moov Money", color: "#0a8fd6" },
-    { name: "MTN MoMo", color: "#ffcb05" },
+    // dans l'ordre où la voix les cite
+    { name: "Wave", color: "#1dc8f2", logo: "assets/wave.png" },
+    { name: "Orange Money", color: "#ff7900", logo: "assets/orange-money.png" },
+    { name: "MTN MoMo", color: "#ffcb05", logo: "assets/momo.png" },
+    { name: "Moov Money", color: "#f47920", logo: "assets/moov-money.png" },
+    { name: "Djamo", color: "#111111", logo: "assets/djamo.png" },
   ],
   chosenPay: 0,
 
   steps: ["Dis ce que tu veux", "Paie en toute simplicité", "Le crédit arrive"],
 
-  confirm: { title: "Pass activé !", sub: "Livré aussitôt." },
+  confirm: { title: "Pass activé !", sub: "En moins de 30 secondes." },
 
   // « Pourquoi Suura » — visual : instant | networks | momo | proche
   features: [
     { title: "Instantané", sub: "Le crédit part dès que le paiement est confirmé.", hl: "Pas d'attente, pas de file.", visual: "instant" },
-    { title: "Tous les réseaux", sub: "Orange, MTN et Moov.", hl: "Un seul endroit pour tout.", visual: "networks" },
+    { title: "Tous les réseaux", sub: "Orange, MTN et Moov :", hl: "tous tes réseaux au même endroit.", visual: "networks" },
     { title: "Paiement mobile money", sub: "Paie avec ce que tu utilises déjà,", hl: "sans carte bancaire.", visual: "momo" },
-    { title: "Recharge pour un proche", sub: "Famille au village, amis au pays :", hl: "envoie-leur du crédit.", visual: "proche" },
+    { title: "Recharge pour un proche", sub: "Même maman au village", hl: "reçoit son crédit grâce à toi.", visual: "proche" },
   ],
   featuresLabel: "Pourquoi Suura",
 
-  proche: { name: "Maman", city: "Bouaké", amount: "1 000 F" },
+  proche: { name: "Maman", city: "Au village", amount: "1 000 F" },
 
   stats: [
     { value: "3", label: "réseaux couverts" },

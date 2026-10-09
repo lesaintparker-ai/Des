@@ -35,11 +35,17 @@
         MD.init(stage);
         if (render) { window.MD_READY = true; return; }
         const scrub = document.getElementById("scrub"), btn = document.getElementById("play"), label = document.getElementById("time");
-        let playing = true, t = 0, last = performance.now();
-        btn.onclick = () => { playing = !playing; btn.textContent = playing ? "Pause" : "Lecture"; last = performance.now(); };
-        scrub.oninput = () => { t = scrub.value / 1000 * MD.duration; };
+        // la voix off suit la lecture (le navigateur exige un clic avant de jouer du son)
+        const voice = MD_CONFIG.voice?.file ? new Audio(MD_CONFIG.voice.file) : null;
+        let playing = false, t = 0, last = performance.now();
+        btn.textContent = "Lecture";
+        btn.onclick = () => {
+          playing = !playing; btn.textContent = playing ? "Pause" : "Lecture"; last = performance.now();
+          if (voice) { if (playing) { voice.currentTime = t; voice.play().catch(() => {}); } else voice.pause(); }
+        };
+        scrub.oninput = () => { t = scrub.value / 1000 * MD.duration; if (voice) voice.currentTime = t; };
         (function loop(now) {
-          if (playing) { t += (now - last) / 1000; if (t > MD.duration) t = 0; }
+          if (playing) { t += (now - last) / 1000; if (t > MD.duration) { t = 0; if (voice) voice.currentTime = 0; } }
           last = now;
           MD.renderAt(t);
           scrub.value = t / MD.duration * 1000;

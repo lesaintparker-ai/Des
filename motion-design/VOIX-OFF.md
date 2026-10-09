@@ -1,43 +1,40 @@
-# Voix off — Suura (vidéo verticale de 41 s)
+# Voix off — Suura
 
-Le texte est calé sur les scènes de l'animation. Le ton est tutoyé, chaleureux et rythmé, comme sur suura.app.
-Il faut parler à un rythme naturel : environ 3 mots par seconde.
+La voix utilisée est celle générée avec ElevenLabs : `assets/voix-off.mp3`, 40,5 s.
+Elle est mixée directement dans `out/suura-motion.mp4`, avec les bruitages en dessous.
 
-| Temps | Ce qu'on voit à l'écran | Texte à dire |
+Toute l'animation est calée sur les phrases ci-dessous. Les temps ont été mesurés automatiquement sur l'audio :
+transcription Whisper et détection des pauses.
+
+| Temps | Voix | Ce qui se passe à l'écran |
 |---|---|---|
-| 0:00 – 0:03 | Awa, l'alerte « Crédit épuisé » | **Plus de crédit en pleine discussion ?** |
-| 0:03 – 0:07 | Logo Suura, « 30 secondes » | **Avec Suura, recharge ton crédit en trente secondes… et continue ta discussion.** |
-| 0:07 – 0:16 | Conversation WhatsApp | **Écris simplement « Bonjour Suura » sur WhatsApp. Donne le numéro, choisis ton pass… et c'est réglé.** |
-| 0:16 – 0:19 | Écran « Payer avec » | **Tu paies avec ton mobile money : Wave, Orange Money, MTN, Moov ou Djamo.** |
-| 0:19 – 0:21 | Notification « Vous avez reçu 1.5 Go » | **Et ton pass arrive aussitôt.** |
-| 0:21 – 0:24 | « Pass activé ! 28 secondes chrono » | **Pass activé. Moins de trente secondes, chrono !** |
-| 0:24 – 0:26 | 01 Instantané | **Instantané : pas d'attente, pas de file.** |
-| 0:26 – 0:29 | 02 Tous les réseaux | **Orange, MTN et Moov, au même endroit.** |
-| 0:29 – 0:31 | 03 Paiement mobile money | **Pas besoin de carte bancaire.** |
-| 0:31 – 0:34 | 04 Recharge pour un proche | **Et tu peux même recharger maman au village.** |
-| 0:34 – 0:37 | Chiffres : 3 · 24/7 · 2 | **Disponible 24 heures sur 24, sur WhatsApp et Telegram.** |
-| 0:37 – 0:41 | Logo + « Écris « Bonjour Suura » » | **Suura, la solution qui vous connecte. Écris « Bonjour Suura » dès maintenant !** |
+| 0:00 | « Plus de crédit en pleine discussion ? » | Awa, l'alerte « Crédit épuisé », la question |
+| 0:02 | « Avec Suura, recharge ton crédit en 30 secondes et continue ta discussion ! » | Le logo Suura apparaît. « 30 secondes » se souligne au moment où il est prononcé, puis viennent les logos Orange, MTN et Moov |
+| 0:06 | « C'est simple ! Écris « Bonjour Suura » sur WhatsApp. » | Le téléphone monte, on tape et on envoie « Bonjour Suura » |
+| 0:09 | « Entre ton numéro, choisis ton pass… » | Saisie du numéro, choix du Pass Internet 500F |
+| 0:11 | « …et passe au paiement. » | Récapitulatif, tap sur « Payer maintenant » |
+| 0:12 | « Wave, Orange Money, MTN, Moov ou Djamo… » | Chaque moyen de paiement s'allume quand il est cité |
+| 0:15 | « …à toi de choisir. Et voilà ! » | Tap sur Wave, puis « Paiement réussi » |
+| 0:17 | « Ton pass arrive aussitôt. » | Le message « Pass activé ! » et la notification Orange arrivent, le chrono s'arrête |
+| 0:18 | « Pass activé en moins de 30 secondes. » | Grande coche, confettis, « En moins de 30 secondes » |
+| 0:20 | « Instantané. Pas d'attente, pas de file. » | 01 Instantané |
+| 0:23 | « Orange, MTN, Moov : tous tes réseaux au même endroit. » | 02 : les logos apparaissent un par un, au rythme de la voix |
+| 0:26 | « Et tout ça, sans carte bancaire. » | 03 : les logos mobile money, puis « Aucune carte bancaire » |
+| 0:28 | « Même maman au village peut recevoir son crédit grâce à toi ! » | 04 Recharge pour un proche |
+| 0:31 | « Simple comme un message. Disponible 24h sur 24, sur WhatsApp et Telegram. » | Chiffres : 3 · 24/7 · 2 |
+| 0:36 | « Suura, la solution qui te connecte. » | Le logo, la signature, tous les logos partenaires |
+| 0:38 | « Écris « Bonjour Suura » dès maintenant ! » | Le bouton « Écris « Bonjour Suura » » et suura.app |
 
-## Trois façons de faire la voix
+## Changer de voix
 
-1. **Ta propre voix (recommandé).** Une vraie voix ivoirienne inspire plus confiance qu'une voix de synthèse,
-   et c'est cohérent avec « une équipe ivoirienne au service de la connexion ».
-   - Dans CapCut : importe `suura-motion.mp4`, puis **Audio → Voix off** et enregistre en suivant le tableau.
-   - Enregistre dans une pièce calme (une chambre avec des vêtements ou des rideaux), téléphone à environ 15 cm de la bouche.
-   - Fais une prise par ligne du tableau, puis cale chaque prise sous sa scène. C'est plus simple qu'une seule longue prise.
-2. **CapCut « Texte en parole ».** Ajoute chaque ligne en texte, puis **Texte en parole** avec une voix française.
-   C'est rapide et gratuit, mais la voix sonne plus générique.
-3. **ElevenLabs (voix IA réaliste).** Tu colles le script et tu choisis une voix française,
-   ou tu clones ta propre voix à partir d'un enregistrement d'une minute. Ensuite tu exportes le MP3 et tu l'importes dans CapCut.
+1. Remplace `assets/voix-off.mp3`, ou indique un autre fichier dans `config.js` → `voice.file`.
+2. Si le texte ou le rythme change, ajuste les temps dans `scenes.js`. Ils sont tous regroupés en haut du fichier,
+   dans `TIMELINE` / `const T = {…}`. C'est aussi là que se règlent les délais de la conversation WhatsApp, dans `buildChat`.
+3. Relance `node render.mjs`.
 
-## Mixage conseillé (CapCut)
+Les volumes se règlent dans `config.js` : `voice.volume` pour la voix, `voice.sfxVolume` pour les bruitages.
 
-- **Voix : 100 %.** C'est l'élément principal.
-- **Bruitages déjà inclus dans la vidéo** (pops, whoosh, « ding » du paiement) : volume du clip vidéo à environ 50–60 %.
-- **Musique :** un instrumental afrobeat ou coupé-décalé léger tiré de la bibliothèque CapCut, à environ 15–20 %.
-  Active la **réduction automatique (ducking)** pour que la musique baisse quand la voix parle.
-- **Sous-titres automatiques :** CapCut → **Texte → Sous-titres automatiques**.
-  Beaucoup de gens regardent sans le son sur TikTok et dans les statuts WhatsApp.
+## Finitions possibles dans CapCut
 
-> Si tu m'envoies ton enregistrement de voix, je peux recaler l'animation exactement sur ta voix
-> et ajouter les sous-titres directement dans le rendu.
+- **Musique :** ajoute un instrumental afrobeat ou coupé-décalé léger, à environ 10–15 %, avec la réduction automatique (ducking) activée.
+- **Sous-titres :** utilise **Texte → Sous-titres automatiques**. Beaucoup de gens regardent sans le son.
