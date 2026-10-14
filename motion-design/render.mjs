@@ -1,5 +1,6 @@
 // Rendu MP4 image par image.
 //   node render.mjs                      → out/suura-motion.mp4 (vidéo + bruitages)
+//   node render.mjs --page teaser-app.html → out/teaser-app.mp4 (annonce de l'app)
 //   node render.mjs --no-audio           → vidéo muette
 //   node render.mjs --no-voice           → bruitages seuls, sans la voix off
 //   node render.mjs --frames 2,8.5,30    → captures PNG à ces instants (contrôle visuel)
@@ -18,7 +19,8 @@ catch { playwright = require(path.join(execSync("npm root -g").toString().trim()
 const args = process.argv.slice(2);
 const opt = (name, def) => { const i = args.indexOf(name); return i >= 0 ? args[i + 1] : def; };
 const dir = path.dirname(fileURLToPath(import.meta.url));
-const out = path.resolve(opt("--out", path.join(dir, "out", "suura-motion.mp4")));
+const pageFile = opt("--page", "index.html");
+const out = path.resolve(opt("--out", path.join(dir, "out", pageFile === "index.html" ? "suura-motion.mp4" : pageFile.replace(/\.html$/, ".mp4"))));
 fs.mkdirSync(path.dirname(out), { recursive: true });
 
 const launch = { args: ["--allow-file-access-from-files"] };
@@ -29,7 +31,7 @@ catch { delete launch.executablePath; browser = await playwright.chromium.launch
 
 const page = await browser.newPage({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: 1 });
 page.on("pageerror", e => console.error("Erreur page :", e.message));
-await page.goto(pathToFileURL(path.join(dir, "index.html")).href + "?render=1");
+await page.goto(pathToFileURL(path.join(dir, pageFile)).href + "?render=1");
 await page.waitForFunction(() => window.MD_READY === true);
 const { duration, fps, w, h, sfx, voice } = await page.evaluate(() => ({ duration: MD.duration, fps: MD.fps, w: MD_CONFIG.width, h: MD_CONFIG.height, sfx: MD.sfx, voice: MD_CONFIG.voice || null }));
 await page.setViewportSize({ width: w, height: h });
