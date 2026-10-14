@@ -2,19 +2,19 @@
 // Même moteur déterministe que scenes.js : MD.renderAt(t) calcule chaque image.
 window.MD_CONFIG = {
   fps: 30, width: 1080, height: 1920,
-  voice: null, // ex. { file: "assets/voix-teaser.mp3", volume: 1, sfxVolume: .35 }
+  voice: { file: "assets/voix-teaser.mp3", volume: 1, sfxVolume: .3 },
   colors: { bgCenter: "#0d6a4e", bgEdge: "#021f16", accent: "#1f9a6e", accentDark: "#106e56", gold: "#f5c518", card: "#f0f8f2", ink: "#0b2e22" },
   logo: "assets/suura.png",
   intro: ["Tu recharges déjà", "avec Suura sur *WhatsApp* ?"],
   news: ["Bonne nouvelle…", "Suura arrive", "en *application* !"],
   // écrans réels de l'app (assets/app) et leur légende
   screens: [
-    { img: "assets/app/home.jpg", title: "Ton accueil", sub: "Favoris, historique et promos" },
-    { img: "assets/app/menu.jpg", title: "Crédit ou pass", sub: "En un seul tap" },
-    { img: "assets/app/operateur.jpg", title: "Orange, MTN, Moov", sub: "Tous tes réseaux" },
-    { img: "assets/app/pass.jpg", title: "Tous les forfaits", sub: "D'un coup d'œil" },
-    { img: "assets/app/recap.jpg", title: "Récap clair", sub: "Frais affichés avant de payer" },
-    { img: "assets/app/payer.jpg", title: "Paie en mobile money", sub: "Wave, Orange Money, MTN, Moov, Djamo" },
+    { at: 6.3, img: "assets/app/home.jpg", title: "Ton accueil", sub: "Favoris, historique et promos" },
+    { at: 9.45, img: "assets/app/menu.jpg", title: "Crédit ou pass", sub: "En un seul tap" },
+    { at: 11.85, img: "assets/app/operateur.jpg", title: "Orange, MTN, Moov", sub: "Tous tes réseaux" },
+    { at: 14.7, img: "assets/app/pass.jpg", title: "Tous les forfaits", sub: "D'un coup d'œil" },
+    { at: 16.6, img: "assets/app/recap.jpg", title: "Récap clair", sub: "Frais affichés avant de payer" },
+    { at: 19.5, img: "assets/app/payer.jpg", title: "Paie en mobile money", sub: "Wave, Orange Money, MTN, Moov, Djamo" },
   ],
   soon: { label: "Installation de l'app Suura", almost: "Presque prêt…", word: "BIENTÔT" },
   claim: ["Le même Suura.", "*Encore plus simple.*"],
@@ -52,16 +52,17 @@ window.MD_CONFIG = {
   const check = c => `<svg viewBox="0 0 100 100" width="100%" height="100%"><circle cx="50" cy="50" r="50" fill="${c}"/><path d="M29 51 L44 66 L72 36" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
   const lines = (arr, fs, cls = "") => arr.map(l => el(`<div class="abs clip"><div class="big ${cls}" style="font-size:${fs}px">${rich(l)}</div></div>`));
 
-  const T = { intro: 0, news: 3.6, show: 7.4, soon: 20.6, claim: 24.6, outro: 27.4, end: 32.4 };
-  const SHOW_STEP = 2.15; // durée par écran
+  // calé sur assets/voix-teaser.mp3 (36 s) — temps des écrans dans C.screens[].at
+  const T = { intro: 0, news: 3.25, show: 6.3, soon: 23.5, claim: 28.0, outro: 30.8, end: 36.6 };
+  const AT = C.screens.map(s => s.at), NEXT = i => (i + 1 < AT.length ? AT[i + 1] : T.soon);
   const scenes = []; let stage, bgP, bgG, fade;
   const scene = (a, b, build) => { const root = el(`<div class="scene"></div>`); stage.appendChild(root); scenes.push({ a, b, root, up: build(root) }); };
 
   // ── téléphone partagé : WhatsApp → splash → app ──────────
   function buildPhone() {
     const N = C.screens.length;
-    sfx(.1, "whoosh"); sfx(.9, "send"); sfx(1.5, "pop"); sfx(4.6, "whoosh"); sfx(5.0, "success");
-    C.screens.forEach((_, i) => i && sfx(T.show + i * SHOW_STEP, "whoosh"));
+    sfx(.1, "whoosh"); sfx(.9, "send"); sfx(1.5, "pop"); sfx(T.news + 1.0, "whoosh"); sfx(T.news + 1.4, "success");
+    AT.forEach((a, i) => i && sfx(a, "whoosh"));
     sfx(T.soon - .1, "whoosh");
     scene(0, T.soon + .6, root => {
       const phone = el(`<div class="abs phone" style="transform-style:preserve-3d"><div class="screen">
@@ -88,7 +89,7 @@ window.MD_CONFIG = {
         // position : bas (intro) → centre (annonce) → bas (démo) → sortie
         const enter = ease(t, 0, .8), toNews = ease(t, T.news, T.news + .7, E.inOutCubic), toShow = ease(t, T.show - .5, T.show + .2, E.inOutCubic);
         const out = ease(t, T.soon - .2, T.soon + .4, E.inCubic);
-        const flip = ease(t, 4.3, 5.0, E.inOutCubic); // rotation pendant le passage WhatsApp → app
+        const flip = ease(t, T.news + .7, T.news + 1.4, E.inOutCubic); // rotation pendant le passage WhatsApp → app
         const y = lerp(lerp(lerp(1950, 520, enter), 700, toNews), 470, toShow) + out * 1400;
         const s = lerp(lerp(.92, .62, toNews), .92, toShow);
         tf(phone, { x: 180, y, s, ry: Math.sin(flip * Math.PI) * 70 + Math.sin(t * .9) * 2.5, rx: (1 - enter) * 20 });
@@ -98,14 +99,14 @@ window.MD_CONFIG = {
         tf(m0, { s: .85 + .15 * ease(t, .9, 1.2, E.outBack), o: prog(t, .9, 1.0) });
         tf(m1, { s: .85 + .15 * ease(t, 1.5, 1.8, E.outBack), o: prog(t, 1.5, 1.6) });
         tf(splash, { o: showApp ? 1 - prog(t, T.show - .5, T.show - .1) : 0 });
-        tf(sl, { s: ease(t, 4.9, 5.4, E.outBack) * (1 + .04 * Math.sin(t * 4)) });
-        tf(stt, { y: (1 - ease(t, 5.2, 5.6)) * 40, o: prog(t, 5.2, 5.4) });
+        tf(sl, { s: ease(t, T.news + 1.3, T.news + 1.8, E.outBack) * (1 + .04 * Math.sin(t * 4)) });
+        tf(stt, { y: (1 - ease(t, T.news + 1.6, T.news + 2.0)) * 40, o: prog(t, T.news + 1.6, T.news + 1.8) });
         app.style.display = showApp ? "block" : "none";
         // carrousel d'écrans façon « swipe »
         let cur = 0;
-        for (let i = 1; i < shots.length; i++) cur += ease(t, T.show + i * SHOW_STEP - .25, T.show + i * SHOW_STEP + .2, E.inOutCubic);
+        for (let i = 1; i < shots.length; i++) cur += ease(t, AT[i] - .25, AT[i] + .2, E.inOutCubic);
         shots.forEach((im, i) => {
-          const d = i - cur, k = prog(t, T.show + i * SHOW_STEP - .25, T.show + (i + 1) * SHOW_STEP);
+          const d = i - cur, k = prog(t, AT[i] - .25, NEXT(i));
           tf(im, { x: d * 700, s: 1 + .03 * k, o: Math.abs(d) < 1.2 ? 1 : 0 });
         });
       };
@@ -121,7 +122,7 @@ window.MD_CONFIG = {
       let f = false;
       return lt => {
         if (!f) { L.forEach(e => fit(e.firstElementChild, 980)); f = true; }
-        const out = ease(lt, 3.3, 3.8, E.inCubic);
+        const out = ease(lt, 2.95, 3.35, E.inCubic);
         tf(chip, { x: cx(chip), y: 150, s: ease(lt, .1, .45, E.outBack), o: 1 - out });
         L.forEach((e, i) => { tf(e, { x: cx(e), y: 250 + i * 110 - out * 60, o: 1 - out }); tf(e.firstElementChild, { y: (1 - ease(lt, .2 + i * .15, .65 + i * .15, E.outQuint)) * 120 }); });
       };
@@ -143,7 +144,7 @@ window.MD_CONFIG = {
       let f = false;
       return lt => {
         if (!f) { L.forEach(e => fit(e.firstElementChild, 1000)); f = true; }
-        const out = ease(lt, 3.4, 3.9, E.inCubic);
+        const out = ease(lt, 2.7, 3.1, E.inCubic);
         root.style.opacity = 1 - out;
         L.forEach((e, i) => { tf(e, { x: cx(e), y: [180, 270, 390][i] - out * 80 }); tf(e.firstElementChild, { y: (1 - ease(lt, .1 + i * .35, .55 + i * .35, E.outQuint)) * 140 }); });
         tf(flow, { x: cx(flow), y: 560 + (1 - ease(lt, .6, 1.0)) * 60, o: prog(lt, .6, .8) });
@@ -171,14 +172,14 @@ window.MD_CONFIG = {
         const o = prog(t, T.show - .3, T.show + .2) * (1 - prog(t, T.soon - .2, T.soon + .2));
         tf(tag, { x: cx(tag), y: 80, o });
         items.forEach((e, i) => {
-          const a = T.show + i * SHOW_STEP, b = a + SHOW_STEP, last = i === N - 1;
+          const a = AT[i], b = NEXT(i), last = i === N - 1;
           const inn = ease(t, a - .1, a + .4, E.outQuint), outq = last ? prog(t, T.soon - .2, T.soon + .2) : ease(t, b - .25, b + .1, E.inCubic);
           tf(e, { x: 40, y: 150 - outq * 40, o: (t >= a - .1 ? 1 : 0) * (1 - outq) });
           tf($(e, ".big"), { y: (1 - inn) * 110 });
           tf($(e, ".f-sub"), { y: (1 - ease(t, a + .1, a + .5)) * 30, o: prog(t, a + .1, a + .35) });
         });
         tf(dots, { x: (W - dots.offsetWidth) / 2, y: 1850, o });
-        ds.forEach((d, i) => { const a = T.show + i * SHOW_STEP, on = t >= a - .1 && (i === N - 1 || t < a + SHOW_STEP - .1); d.style.width = on ? "70px" : "36px"; d.style.background = on ? C.colors.gold : "rgba(255,255,255,.22)"; });
+        ds.forEach((d, i) => { const a = AT[i], on = t >= a - .1 && (i === N - 1 || t < NEXT(i) - .1); d.style.width = on ? "70px" : "36px"; d.style.background = on ? C.colors.gold : "rgba(255,255,255,.22)"; });
       };
     });
   }
@@ -186,9 +187,9 @@ window.MD_CONFIG = {
   // ── 3 bis. Transition « bientôt » : chargement bloqué à 99 % ──
   function buildSoon() {
     const S = C.soon, s0 = T.soon;
-    sfx(s0, "whoosh"); sfx(s0 + .6, "pop");
-    for (let k = 0; k < 9; k++) sfx(s0 + .9 + k * .17, "tick");
-    sfx(s0 + 2.5, "alert"); sfx(s0 + 2.95, "whoosh"); sfx(s0 + 3.1, "ding");
+    sfx(s0, "whoosh"); sfx(s0 + .4, "pop");
+    for (let k = 0; k < 9; k++) sfx(s0 + .7 + k * .14, "tick");
+    sfx(s0 + 1.95, "alert"); sfx(s0 + 4.0, "whoosh"); sfx(s0 + 4.2, "ding");
     scene(s0 - .05, T.claim + .3, root => {
       const stripes = [C.colors.gold, C.colors.accent, "#021f16"].map(c => el(`<div class="abs" style="width:1700px;height:2600px;background:${c};left:0;top:-340px"></div>`));
       const icon = el(`<div class="abs" style="border-radius:50%;box-shadow:0 30px 80px rgba(0,0,0,.45)">${logo(220)}</div>`);
@@ -205,38 +206,38 @@ window.MD_CONFIG = {
         if (!f) { fit(word, 1020); f = true; }
         // volets diagonaux qui balayent l'écran et masquent la sortie du téléphone
         stripes.forEach((st, i) => { const p = ease(lt, i * .08, .75 + i * .08, E.inOutCubic); tf(st, { x: lerp(-2300, 2300, p), rz: -14 }); });
-        const out = ease(lt, 3.6, 4.0, E.inCubic);
+        const out = ease(lt, 4.6, 4.95, E.inCubic);
         root.style.opacity = 1 - out;
-        const load = ease(lt, .9, 2.4, E.inOutCubic) * .99, stuck = lt > 2.4;
-        const shake = Math.sin(lt * 70) * 10 * bump(lt, 2.45, 2.85);
-        const gone = ease(lt, 2.85, 3.05, E.inCubic);
-        tf(icon, { x: W / 2 - 110, y: 470, s: ease(lt, .45, .85, E.outBack) * (1 - gone * .3), o: prog(lt, .45, .55) * (1 - gone) });
-        tf(label, { x: cx(label), y: 760, o: prog(lt, .6, .8) * (1 - gone) });
-        tf(bar, { x: W / 2 - 410 + shake, y: 850, o: prog(lt, .7, .85) * (1 - gone) });
+        const load = ease(lt, .6, 1.9, E.inOutCubic) * .99, stuck = lt > 1.9;
+        const shake = Math.sin(lt * 70) * 10 * bump(lt, 1.95, 2.5);
+        const gone = ease(lt, 3.95, 4.15, E.inCubic);
+        tf(icon, { x: W / 2 - 110, y: 470, s: ease(lt, .3, .7, E.outBack) * (1 - gone * .3), o: prog(lt, .3, .4) * (1 - gone) });
+        tf(label, { x: cx(label), y: 760, o: prog(lt, .4, .6) * (1 - gone) });
+        tf(bar, { x: W / 2 - 410 + shake, y: 850, o: prog(lt, .45, .6) * (1 - gone) });
         bf.style.transform = `scaleX(${load})`;
         pct.textContent = `${Math.round(load * 100)} %`;
         pct.style.color = stuck ? C.colors.gold : "#fff";
-        tf(pct, { x: cx(pct) + shake, y: 920, o: prog(lt, .8, .95) * (1 - gone) });
-        tf(almost, { x: cx(almost), y: 1110, o: prog(lt, 2.4, 2.6) * (1 - gone) });
-        const slam = ease(lt, 2.95, 3.25, E.outCubic), wob = Math.sin(lt * 60) * 8 * bump(lt, 3.2, 3.5);
-        tf(word, { x: cx(word) + wob, y: 820, s: lerp(2.6, 1, slam) * (1 + .03 * Math.sin(lt * 5) * prog(lt, 3.4, 3.6)), o: prog(lt, 2.95, 3.05), blur: (1 - slam) * 14 });
-        tf(flash, { o: .7 * bump(lt, 3.15, 3.45) });
+        tf(pct, { x: cx(pct) + shake, y: 920, o: prog(lt, .55, .7) * (1 - gone) });
+        tf(almost, { x: cx(almost), y: 1110, o: prog(lt, 3.1, 3.3) * (1 - gone) });
+        const slam = ease(lt, 4.05, 4.35, E.outCubic), wob = Math.sin(lt * 60) * 8 * bump(lt, 4.3, 4.6);
+        tf(word, { x: cx(word) + wob, y: 820, s: lerp(2.6, 1, slam) * (1 + .03 * Math.sin(lt * 5) * prog(lt, 4.4, 4.6)), o: prog(lt, 4.05, 4.15), blur: (1 - slam) * 14 });
+        tf(flash, { o: .7 * bump(lt, 4.25, 4.55) });
       };
     });
   }
 
   // ── 4. Promesse ─────────────────────────────────────────
   function buildClaim() {
-    sfx(T.claim + .2, "pop"); sfx(T.claim + .7, "pop");
+    sfx(T.claim + .2, "pop"); sfx(T.claim + 1.5, "pop");
     scene(T.claim, T.outro + .4, root => {
       const L = lines(C.claim, 120);
       root.append(...L);
       let f = false;
       return lt => {
         if (!f) { L.forEach(e => fit(e.firstElementChild, 1000)); f = true; }
-        const out = ease(lt, 2.5, 2.95, E.inCubic);
+        const out = ease(lt, 2.65, 3.0, E.inCubic);
         root.style.opacity = 1 - out;
-        L.forEach((e, i) => { tf(e, { x: cx(e), y: 780 + i * 150, s: 1 + out * .1 }); tf(e.firstElementChild, { y: (1 - ease(lt, .15 + i * .45, .6 + i * .45, E.outQuint)) * 170 }); });
+        L.forEach((e, i) => { tf(e, { x: cx(e), y: 780 + i * 150, s: 1 + out * .1 }); tf(e.firstElementChild, { y: (1 - ease(lt, .15 + i * 1.35, .6 + i * 1.35, E.outQuint)) * 170 }); });
       };
     });
   }
@@ -244,7 +245,7 @@ window.MD_CONFIG = {
   // ── 5. Fin : BIENTÔT ───────────────────────────────────
   function buildOutro() {
     const O = C.outro;
-    sfx(T.outro + .2, "success"); sfx(T.outro + 1.0, "ding"); sfx(T.outro + 2.2, "pop");
+    sfx(T.outro + .2, "success"); sfx(T.outro + 1.35, "ding"); sfx(T.outro + 2.4, "pop");
     scene(T.outro, T.end, root => {
       const rings = [0, 1, 2].map(() => el(`<div class="abs ring" style="border-color:rgba(255,255,255,.18)"></div>`));
       const lg = el(`<div class="abs" style="border-radius:50%;box-shadow:0 30px 80px rgba(0,0,0,.45)">${logo(260)}</div>`);
@@ -260,10 +261,10 @@ window.MD_CONFIG = {
         rings.forEach((r, i) => { const p = ((lt - .2 - i * .6) % 1.8 + 1.8) % 1.8 / 1.8; tf(r, { x: W / 2 - 180, y: 470 - 180, s: 1 + p * 2.4, o: lt > .2 + i * .6 ? (1 - p) * .7 : 0 }); });
         tf(lg, { x: W / 2 - 130, y: 340, s: ease(lt, .1, .55, E.outBack), o: prog(lt, .1, .25) });
         tf(title, { x: cx(title), y: 680 + (1 - ease(lt, .5, .9)) * 40, o: prog(lt, .5, .75) });
-        tf(soon, { x: cx(soon), y: 800, s: ease(lt, .9, 1.35, E.outBack) * (1 + .03 * Math.sin(lt * 4) * prog(lt, 1.4, 1.7)), o: prog(lt, .9, 1.0) });
-        tf(wait, { x: cx(wait), y: 1180, s: ease(lt, 2.0, 2.4, E.outBack), o: prog(lt, 2.0, 2.15) });
-        tf(waitSub, { x: cx(waitSub), y: 1330, o: prog(lt, 2.3, 2.6) });
-        tf(url, { x: cx(url), y: 1460 + (1 - ease(lt, 2.6, 3.0)) * 30, o: prog(lt, 2.6, 2.85) });
+        tf(soon, { x: cx(soon), y: 800, s: ease(lt, 1.3, 1.75, E.outBack) * (1 + .03 * Math.sin(lt * 4) * prog(lt, 1.8, 2.1)), o: prog(lt, 1.3, 1.4) });
+        tf(wait, { x: cx(wait), y: 1180, s: ease(lt, 2.35, 2.75, E.outBack), o: prog(lt, 2.35, 2.5) });
+        tf(waitSub, { x: cx(waitSub), y: 1330, o: prog(lt, 4.3, 4.6) });
+        tf(url, { x: cx(url), y: 1460 + (1 - ease(lt, 4.6, 5.0)) * 30, o: prog(lt, 4.6, 4.85) });
       };
     });
   }
