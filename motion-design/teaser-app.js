@@ -16,6 +16,7 @@ window.MD_CONFIG = {
     { img: "assets/app/recap.jpg", title: "Récap clair", sub: "Frais affichés avant de payer" },
     { img: "assets/app/payer.jpg", title: "Paie en mobile money", sub: "Wave, Orange Money, MTN, Moov, Djamo" },
   ],
+  soon: { label: "Installation de l'app Suura", almost: "Presque prêt…", word: "BIENTÔT" },
   claim: ["Le même Suura.", "*Encore plus simple.*"],
   outro: { title: "L'application Suura", soon: "BIENTÔT", wait: "En attendant, écris « Bonjour Suura »", waitSub: "sur WhatsApp", url: "suura.app" },
 };
@@ -51,7 +52,7 @@ window.MD_CONFIG = {
   const check = c => `<svg viewBox="0 0 100 100" width="100%" height="100%"><circle cx="50" cy="50" r="50" fill="${c}"/><path d="M29 51 L44 66 L72 36" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
   const lines = (arr, fs, cls = "") => arr.map(l => el(`<div class="abs clip"><div class="big ${cls}" style="font-size:${fs}px">${rich(l)}</div></div>`));
 
-  const T = { intro: 0, news: 3.6, show: 7.4, claim: 20.6, outro: 23.4, end: 28.4 };
+  const T = { intro: 0, news: 3.6, show: 7.4, soon: 20.6, claim: 24.6, outro: 27.4, end: 32.4 };
   const SHOW_STEP = 2.15; // durée par écran
   const scenes = []; let stage, bgP, bgG, fade;
   const scene = (a, b, build) => { const root = el(`<div class="scene"></div>`); stage.appendChild(root); scenes.push({ a, b, root, up: build(root) }); };
@@ -61,8 +62,8 @@ window.MD_CONFIG = {
     const N = C.screens.length;
     sfx(.1, "whoosh"); sfx(.9, "send"); sfx(1.5, "pop"); sfx(4.6, "whoosh"); sfx(5.0, "success");
     C.screens.forEach((_, i) => i && sfx(T.show + i * SHOW_STEP, "whoosh"));
-    sfx(T.claim - .1, "whoosh");
-    scene(0, T.claim + .6, root => {
+    sfx(T.soon - .1, "whoosh");
+    scene(0, T.soon + .6, root => {
       const phone = el(`<div class="abs phone" style="transform-style:preserve-3d"><div class="screen">
         <div class="wa" style="position:absolute;inset:0;display:flex;flex-direction:column;background:#0b141a">
           <div class="sb"><span>08:45</span><span>▂▄▆ LTE ▮</span></div>
@@ -86,7 +87,7 @@ window.MD_CONFIG = {
       return (lt, t) => {
         // position : bas (intro) → centre (annonce) → bas (démo) → sortie
         const enter = ease(t, 0, .8), toNews = ease(t, T.news, T.news + .7, E.inOutCubic), toShow = ease(t, T.show - .5, T.show + .2, E.inOutCubic);
-        const out = ease(t, T.claim - .2, T.claim + .4, E.inCubic);
+        const out = ease(t, T.soon - .2, T.soon + .4, E.inCubic);
         const flip = ease(t, 4.3, 5.0, E.inOutCubic); // rotation pendant le passage WhatsApp → app
         const y = lerp(lerp(lerp(1950, 520, enter), 700, toNews), 470, toShow) + out * 1400;
         const s = lerp(lerp(.92, .62, toNews), .92, toShow);
@@ -156,7 +157,7 @@ window.MD_CONFIG = {
   // ── 3. Démo : légendes des écrans ───────────────────────
   function buildCaptions() {
     const N = C.screens.length;
-    scene(T.show - .3, T.claim + .3, root => {
+    scene(T.show - .3, T.soon + .3, root => {
       const tag = el(`<div class="abs f-label">Aperçu de l'app</div>`);
       const items = C.screens.map((s, i) => el(`<div class="abs" style="text-align:center;width:1000px">
         <div class="clip"><div class="big" style="font-size:84px;display:inline-block">${rich(s.title)}</div></div>
@@ -167,17 +168,59 @@ window.MD_CONFIG = {
       let f = false;
       return (lt, t) => {
         if (!f) { items.forEach(e => fit($(e, ".big"), 980)); f = true; }
-        const o = prog(t, T.show - .3, T.show + .2) * (1 - prog(t, T.claim - .2, T.claim + .2));
+        const o = prog(t, T.show - .3, T.show + .2) * (1 - prog(t, T.soon - .2, T.soon + .2));
         tf(tag, { x: cx(tag), y: 80, o });
         items.forEach((e, i) => {
           const a = T.show + i * SHOW_STEP, b = a + SHOW_STEP, last = i === N - 1;
-          const inn = ease(t, a - .1, a + .4, E.outQuint), outq = last ? prog(t, T.claim - .2, T.claim + .2) : ease(t, b - .25, b + .1, E.inCubic);
+          const inn = ease(t, a - .1, a + .4, E.outQuint), outq = last ? prog(t, T.soon - .2, T.soon + .2) : ease(t, b - .25, b + .1, E.inCubic);
           tf(e, { x: 40, y: 150 - outq * 40, o: (t >= a - .1 ? 1 : 0) * (1 - outq) });
           tf($(e, ".big"), { y: (1 - inn) * 110 });
           tf($(e, ".f-sub"), { y: (1 - ease(t, a + .1, a + .5)) * 30, o: prog(t, a + .1, a + .35) });
         });
         tf(dots, { x: (W - dots.offsetWidth) / 2, y: 1850, o });
         ds.forEach((d, i) => { const a = T.show + i * SHOW_STEP, on = t >= a - .1 && (i === N - 1 || t < a + SHOW_STEP - .1); d.style.width = on ? "70px" : "36px"; d.style.background = on ? C.colors.gold : "rgba(255,255,255,.22)"; });
+      };
+    });
+  }
+
+  // ── 3 bis. Transition « bientôt » : chargement bloqué à 99 % ──
+  function buildSoon() {
+    const S = C.soon, s0 = T.soon;
+    sfx(s0, "whoosh"); sfx(s0 + .6, "pop");
+    for (let k = 0; k < 9; k++) sfx(s0 + .9 + k * .17, "tick");
+    sfx(s0 + 2.5, "alert"); sfx(s0 + 2.95, "whoosh"); sfx(s0 + 3.1, "ding");
+    scene(s0 - .05, T.claim + .3, root => {
+      const stripes = [C.colors.gold, C.colors.accent, "#021f16"].map(c => el(`<div class="abs" style="width:1700px;height:2600px;background:${c};left:0;top:-340px"></div>`));
+      const icon = el(`<div class="abs" style="border-radius:50%;box-shadow:0 30px 80px rgba(0,0,0,.45)">${logo(220)}</div>`);
+      const label = el(`<div class="abs f-label" style="font-size:32px">${S.label}</div>`);
+      const bar = el(`<div class="abs" style="width:820px;height:30px;border-radius:15px;background:rgba(255,255,255,.14);overflow:hidden"><div class="bf" style="height:100%;width:100%;background:linear-gradient(90deg,${C.colors.accent},${C.colors.gold});transform-origin:0 50%"></div></div>`);
+      const pct = el(`<div class="abs" style="font-family:Outfit;font-weight:800;font-size:150px;color:#fff;letter-spacing:-3px;font-variant-numeric:tabular-nums">0 %</div>`);
+      const almost = el(`<div class="abs sub2" style="font-size:40px">${S.almost}</div>`);
+      const word = el(`<div class="abs" style="font-family:Outfit;font-weight:800;font-size:240px;letter-spacing:8px;color:var(--gold);line-height:1;text-shadow:0 20px 60px rgba(0,0,0,.4)">${S.word}</div>`);
+      const flash = el(`<div class="abs" style="width:${W}px;height:${H}px;background:#fff"></div>`);
+      root.append(icon, label, bar, pct, almost, word, ...stripes, flash);
+      const bf = $(bar, ".bf");
+      let f = false;
+      return lt => {
+        if (!f) { fit(word, 1020); f = true; }
+        // volets diagonaux qui balayent l'écran et masquent la sortie du téléphone
+        stripes.forEach((st, i) => { const p = ease(lt, i * .08, .75 + i * .08, E.inOutCubic); tf(st, { x: lerp(-2300, 2300, p), rz: -14 }); });
+        const out = ease(lt, 3.6, 4.0, E.inCubic);
+        root.style.opacity = 1 - out;
+        const load = ease(lt, .9, 2.4, E.inOutCubic) * .99, stuck = lt > 2.4;
+        const shake = Math.sin(lt * 70) * 10 * bump(lt, 2.45, 2.85);
+        const gone = ease(lt, 2.85, 3.05, E.inCubic);
+        tf(icon, { x: W / 2 - 110, y: 470, s: ease(lt, .45, .85, E.outBack) * (1 - gone * .3), o: prog(lt, .45, .55) * (1 - gone) });
+        tf(label, { x: cx(label), y: 760, o: prog(lt, .6, .8) * (1 - gone) });
+        tf(bar, { x: W / 2 - 410 + shake, y: 850, o: prog(lt, .7, .85) * (1 - gone) });
+        bf.style.transform = `scaleX(${load})`;
+        pct.textContent = `${Math.round(load * 100)} %`;
+        pct.style.color = stuck ? C.colors.gold : "#fff";
+        tf(pct, { x: cx(pct) + shake, y: 920, o: prog(lt, .8, .95) * (1 - gone) });
+        tf(almost, { x: cx(almost), y: 1110, o: prog(lt, 2.4, 2.6) * (1 - gone) });
+        const slam = ease(lt, 2.95, 3.25, E.outCubic), wob = Math.sin(lt * 60) * 8 * bump(lt, 3.2, 3.5);
+        tf(word, { x: cx(word) + wob, y: 820, s: lerp(2.6, 1, slam) * (1 + .03 * Math.sin(lt * 5) * prog(lt, 3.4, 3.6)), o: prog(lt, 2.95, 3.05), blur: (1 - slam) * 14 });
+        tf(flash, { o: .7 * bump(lt, 3.15, 3.45) });
       };
     });
   }
@@ -235,7 +278,7 @@ window.MD_CONFIG = {
         <path d="M0 0 Q40 45 0 90 M180 0 Q140 45 180 90 M0 180 Q40 135 0 90 M180 180 Q140 135 180 90"/></g></pattern></defs><rect width="100%" height="100%" fill="url(#pt)"/></svg>`);
       bgG = el(`<div id="bg-glow"></div>`);
       stage.append(bgP, bgG);
-      buildIntro(); buildNews(); buildCaptions(); buildPhone(); buildClaim(); buildOutro();
+      buildIntro(); buildNews(); buildCaptions(); buildPhone(); buildSoon(); buildClaim(); buildOutro();
       stage.append(el(`<div id="vignette"></div>`));
       fade = el(`<div id="fade"></div>`); stage.append(fade);
       SFX.sort((a, b) => a.t - b.t);
