@@ -1,0 +1,184 @@
+@font-face {
+  font-family: "Anton";
+  src: url("../assets/fonts/Anton-Regular.woff2") format("woff2");
+  font-display: block;
+}
+
+:root {
+  --blue: #2026e8;
+  --white: #ffffff;
+  --purple: #7027a5;
+  --crimson: #b51235;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #000;
+  overflow: hidden;
+}
+
+#stage {
+  position: relative;
+  overflow: hidden;
+  background: var(--blue);
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+#bg {
+  background: radial-gradient(ellipse at 50% 45%, rgba(255, 255, 255, 0.06), rgba(0, 0, 30, 0.16) 85%);
+}
+
+#vignette {
+  background: radial-gradient(ellipse at 50% 50%, rgba(8, 10, 70, 0) 35%, rgba(8, 10, 70, 0.55) 100%);
+  opacity: 0;
+}
+
+#world {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
+}
+
+/* Étiquette : texte condensé blanc, cadre blanc optionnel */
+.label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: "Anton", sans-serif;
+  color: var(--white);
+  line-height: 1.12;
+  white-space: nowrap;
+  text-transform: uppercase;
+  transform-origin: 0 0;
+}
+.label.cadre .mask {
+  background: var(--blue);
+}
+.label.invert .mask {
+  background: var(--white);
+  color: var(--blue);
+}
+.mask {
+  position: relative;
+  overflow: hidden;
+  padding: 0.17em 0.2em 0.03em;
+}
+.txt {
+  display: inline-block;
+}
+.bar {
+  position: absolute;
+  background: var(--white);
+}
+.bar-t { left: 0; top: 0; width: 100%; height: var(--bw); transform-origin: 0 50%; }
+.bar-r { right: 0; top: 0; width: var(--bw); height: 100%; transform-origin: 50% 0; }
+.bar-b { right: 0; bottom: 0; width: 100%; height: var(--bw); transform-origin: 100% 50%; }
+.bar-l { left: 0; bottom: 0; width: var(--bw); height: 100%; transform-origin: 50% 100%; }
+
+.band {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+/* Médaillon */
+#med {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+#med .clip {
+  position: absolute;
+  inset: 0;
+}
+#med img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+#med .glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+}
+#med .halo,
+#med .glint {
+  position: absolute;
+  border-radius: 50%;
+  mix-blend-mode: screen;
+}
+#med svg {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+}
+
+/* Bloc-titre final */
+#lockup {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: "Anton", sans-serif;
+  text-transform: uppercase;
+  color: var(--white);
+}
+#lockup .box {
+  position: relative;
+  background: var(--blue);
+}
+#lockup .plate {
+  position: absolute;
+  inset: 0;
+  background: var(--white);
+}
+#lockup .word {
+  position: relative;
+  line-height: 1.12;
+  padding: 0.17em 0.2em 0.03em;
+  white-space: nowrap;
+}
+#lockup .word span {
+  display: inline-block;
+}
+#lockup .erte {
+  position: absolute;
+  top: 0;
+  overflow: hidden;
+  padding: 0.17em 0 0.03em;
+}
+#lockup .slice {
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+  line-height: 1.12;
+  padding: 0.17em 0.2em 0.03em;
+}
+#lockup .deco {
+  position: absolute;
+}
+
+#flash {
+  background: var(--white);
+  opacity: 0;
+}
+#flashdot {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--white);
+}
+
+/* Recouvre le bord du fond bleu (évite un liseré à l'anticrénelage) */
+#lockup .box > .bar-t { top: -1px; left: -1px; width: calc(100% + 2px); }
+#lockup .box > .bar-b { bottom: -1px; right: -1px; width: calc(100% + 2px); }
+#lockup .box > .bar-r { right: -1px; top: -1px; height: calc(100% + 2px); }
+#lockup .box > .bar-l { left: -1px; bottom: -1px; height: calc(100% + 2px); }

@@ -1,0 +1,14 @@
+{
+  "name": "jingle-a-la-decouverte",
+  "private": true,
+  "description": "Jingle motion design « À LA DÉCOUVERTE » — rendu image par image vers MP4",
+  "scripts": {
+    "audio": "python3 -I audio/synth.py src/cues.js audio/jingle.wav",
+    "render:h": "node render.js h out/a-la-decouverte_16x9.mp4",
+    "render:v": "node render.js v out/a-la-decouverte_9x16.mp4",
+    "stills": "node stills.js"
+  },
+  "devDependencies": {
+    "playwright": "1.56.1"
+  }
+}

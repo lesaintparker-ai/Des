@@ -1,0 +1,7 @@
+node_modules/
+out/stills/
+out/*.log
+out/sheet*.jpg
+out/h_final.jpg
+out/spectre.png
+out/onde.png

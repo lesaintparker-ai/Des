@@ -1,0 +1,32 @@
+// Repères temporels (secondes) partagés par l'image (jingle.js) et le son (audio/synth.py).
+// Tempo 125 BPM : 1 temps = 0,48 s = 12 images à 25 i/s ; premier temps à 0,20 s.
+window.CUES = {
+  "fps": 25,
+  "duration": 10,
+  "bpm": 125,
+  "firstBeat": 0.2,
+  "impact1": 0.2,
+  "whoosh1": 1.28,
+  "land2": 1.64,
+  "whoosh2": 2.3,
+  "land3": 2.6,
+  "whoosh3": 3.26,
+  "land4": 3.56,
+  "bands": 3.5,
+  "dezoom": 4.04,
+  "dezoomEnd": 4.52,
+  "exit": 4.88,
+  "drop": 5.0,
+  "ringEnd": 5.48,
+  "bell": 5.48,
+  "riser": 6.44,
+  "iris": 6.6,
+  "irisEnd": 6.86,
+  "flash": 6.84,
+  "silence": 7.2,
+  "impact2": 7.4,
+  "rirFall": 7.88,
+  "erte": 7.96,
+  "stamp": 8.36,
+  "still": 8.6
+};
