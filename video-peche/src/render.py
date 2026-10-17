@@ -182,6 +182,11 @@ def build(words):
                     t = k / 30
                     frame.append((ax + (bx - ax) * t + RNG.normal(0, .8), ay + (by - ay) * t + RNG.normal(0, .8)))
             b['frame'] = frame
+            lg = Image.open(os.path.join(HERE, 'img', 'logo.png')).convert('RGBA')
+            lw = 380
+            lg = lg.resize((lw, round(lg.height * lw / lg.width)), Image.LANCZOS)
+            b['logo'] = np.asarray(lg).astype(np.float32)
+            b['lx'], b['ly'] = (W - lw) // 2, b['iy'] + h + 44
         else:
             b['ink'], b['order'], b['seq'] = stroke_order(img)
             if 'bubble' in sc:
@@ -218,6 +223,7 @@ def build(words):
             b['t_frame'] = (t, t + 0.8)
             b['t_photo'] = (t + 0.5, t + 1.3)
             b['t_exit'] = (t + 0.8, t + 1.2)
+            b['t_logo'] = (t + 1.2, t + 1.8)
             continue
         end_draw = E - 1.0 - (0.6 if 'bub' in b else 0)
         b['t_draw'] = (t, end_draw)
@@ -282,6 +288,11 @@ def render_block(b, t, out, offy):
             y0 = b['iy'] - offy
             seg = out[y0:y0 + b['h'], b['ix']:b['ix'] + b['w']]
             seg[:] = seg * (1 - a) + b['img'][:seg.shape[0]] * a
+        g0, g1 = b['t_logo']
+        if t >= g0:
+            a = ease((t - g0) / (g1 - g0))
+            lg = b['logo']
+            paste_rgba(out, lg, b['lx'], int(b['ly'] - offy + 30 * (1 - a)), np.full(lg.shape[:2], a, np.float32))
         return tip, drawing
     d0, d1 = b['t_draw']
     if t >= d0:
