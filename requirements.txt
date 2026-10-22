@@ -1,0 +1,3 @@
+# Dépendances Python réellement utilisées (FFmpeg >= 6 doit aussi être installé)
+numpy>=1.26
+Pillow>=10.0

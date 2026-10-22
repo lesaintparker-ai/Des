@@ -1,0 +1,24 @@
+{
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "video": {"codec": "libx264", "crf": 16, "preset": "slow", "pix_fmt": "yuv420p", "profile": "high", "tune": "animation"},
+  "preview": {"scale": 0.5, "crf": 26, "preset": "veryfast"},
+  "workers": 4,
+  "fonts": {
+    "title": "assets/fonts/Cinzel-Variable.ttf",
+    "sans": "assets/fonts/Montserrat-Variable.ttf"
+  },
+  "audio": {
+    "sample_rate": 48000,
+    "bitrate": "256k",
+    "target_lufs": -15.0,
+    "true_peak": -2.0,
+    "voice_gain_db": 0.0,
+    "music_gain_db": -10.0,
+    "music_duck_db": -13.0,
+    "sfx_gain_db": -12.0,
+    "intro_gain_db": -5.0,
+    "music_file": null
+  }
+}
