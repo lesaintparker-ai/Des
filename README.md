@@ -7,6 +7,7 @@ puis huit scènes animées à partir des illustrations originales, calées sur l
 |---|---|
 | Vidéo finale | `output/final/retournez_evangile_eau_esprit_1080p.mp4` |
 | Prévisualisation | `output/preview/retournez_evangile_preview_540p.mp4` |
+| Sous-titres séparés (SRT, pour YouTube / Facebook) | `output/final/retournez_evangile_eau_esprit.srt` |
 | Planche contact (1 image / 2 s) | `docs/planche_contact.jpg` |
 | Rapport de contrôle qualité | `docs/RAPPORT_QC.md` |
 
@@ -46,6 +47,14 @@ make audio     # mixage seul + stems + contrôle voix/fond
 - **`config/render.json`** : résolution, cadence, qualité d'encodage, niveaux audio (voix, musique, ducking, effets,
   intro), cible loudness (−15 LUFS, crête −2 dBTP) et `music_file`.
 - Textes de l'écran final : `params` de la scène `livre` dans `config/timeline.json`.
+
+## Sous-titres
+
+Les sous-titres sont **incrustés** dans la vidéo et aussi exportés en `.srt`. Le texte de chaque ligne vient du script
+de référence ; ses heures sont calées sur le début et la fin des mots prononcés (`config/sous_titres.json`, ancres `@mot`).
+Le style (police, taille, opacité du fond, marges, fondu) se règle dans `config/render.json > subtitles`.
+Pour une version sans incrustation (si vous téléversez le `.srt` à part), mettre `"burn": false`, puis
+`python3 -m src.render.assemble --final --no-render` (≈2 min, l'animation n'est pas recalculée).
 
 ## Remplacer la voix off
 

@@ -9,6 +9,17 @@
     "title": "assets/fonts/Cinzel-Variable.ttf",
     "sans": "assets/fonts/Montserrat-Variable.ttf"
   },
+  "subtitles": {
+    "burn": true,
+    "font_name": "Montserrat SemiBold",
+    "font_dir": "assets/fonts/sous_titres",
+    "size": 48,
+    "spacing": 0.5,
+    "box_opacity": 0.62,
+    "margin_bottom": 54,
+    "margin_x": 220,
+    "fade": 0.12
+  },
   "audio": {
     "sample_rate": 48000,
     "bitrate": "256k",

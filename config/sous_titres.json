@@ -1,0 +1,25 @@
+{
+  "_doc": "Sous-titres : texte exact du script, 'from' = début du premier mot, 'to' = fin du dernier mot (ancres résolues avec les timestamps de la voix). Style dans config/render.json > subtitles.",
+  "cues": [
+    {"text": "Pourquoi tant de croyants passent-ils leur vie à l'église…", "from": "@pourquoi", "to": "@l'église"},
+    {"text": "…sans jamais trouver la paix ?", "from": "@sans", "to": "@paix"},
+    {"text": "On leur dit de prier chaque jour pour laver leurs péchés.", "from": "@on", "to": "@péchés"},
+    {"text": "Mais pourquoi cette culpabilité revient-elle sans cesse ?", "from": "@mais", "to": "@cesse"},
+    {"text": "Et si tu n'avais jamais entendu l'Évangile dans toute sa profondeur ?", "from": "@et", "to": "@profondeur"},
+    {"text": "Beaucoup parlent du sang de Jésus à la Croix,", "from": "@beaucoup", "to": "@croix"},
+    {"text": "mais oublient Son baptême au Jourdain.", "from": "@mais#2", "to": "@jourdain"},
+    {"text": "Pourtant, dans l'Ancien Testament,", "from": "@pourtant", "to": "@testament"},
+    {"text": "le péché était transféré sur le sacrifice par l'imposition des mains.", "from": "@péché-0.12", "to": "@mains"},
+    {"text": "Au Jourdain, Jean-Baptiste a baptisé Jésus.", "from": "@au#2", "to": "@jésus#2"},
+    {"text": "Selon l'Évangile présenté dans ce livre,", "from": "@selon", "to": "@livre"},
+    {"text": "c'est ainsi que les péchés du monde ont été transférés sur Lui.", "from": "@c'est", "to": "@lui"},
+    {"text": "Puis, à la Croix, Jésus a porté la condamnation", "from": "@puis", "to": "@condamnation"},
+    {"text": "et versé Son sang pour accomplir l'œuvre du salut.", "from": "@versé-0.16", "to": "@salut"},
+    {"text": "Son baptême et Son sacrifice sont au cœur de cet Évangile.", "from": "@son#3", "to": "@évangile"},
+    {"text": "Tu désires comprendre ce message par toi-même ?", "from": "@tu#2", "to": "@toi-même"},
+    {"text": "Découvre gratuitement le livre « Retournez à l'Évangile de l'eau et de l'Esprit ».", "from": "@découvre", "to": "@l'esprit"},
+    {"text": "Envoie-moi un message privé pour le recevoir.", "from": "@envoie-moi", "to": "@recevoir"},
+    {"text": "Reviens à la Parole.", "from": "@reviens", "to": "@parole"},
+    {"text": "Et prends le temps de découvrir cet Évangile.", "from": "@prends-0.16", "to": "@évangile#2"}
+  ]
+}

@@ -11,6 +11,7 @@ import subprocess
 from src.audio.mix import build_mix, total_duration
 from src.common import FPS, H, RENDER, ROOT, TIMELINE, W, intro_offset, path
 from src.render.render_video import BUILD, encoder_args, render_video
+from src.render.subtitles import write_ass, write_srt
 
 
 def loudnorm(src, dst):
@@ -39,7 +40,13 @@ def assemble(final, rerender=True):
     cf = TIMELINE["intro"]["crossfade"]
     norm = f"fps={FPS},scale={w}:{h}:flags=lanczos,setsar=1,format=yuv420p,settb=AVTB"
     graph = (f"[0:v]{norm}[i];[1:v]{norm}[s];"
-             f"[i][s]xfade=transition=fade:duration={cf}:offset={intro_offset():.3f},format=yuv420p[v]")
+             f"[i][s]xfade=transition=fade:duration={cf}:offset={intro_offset():.3f}")
+    st = RENDER["subtitles"]
+    write_srt(ROOT / "output/final/retournez_evangile_eau_esprit.srt")
+    if st["burn"]:
+        ass = write_ass(BUILD / f"sous_titres_{tag}.ass", w, h)
+        graph += f",subtitles=filename={ass}:fontsdir={path(st['font_dir'])}"
+    graph += ",format=yuv420p[v]"
     a = RENDER["audio"]
     cmd = ["ffmpeg", "-v", "error", "-y", "-i", str(path(TIMELINE["intro"]["file"])), "-i", str(scenario),
            "-i", str(mix), "-filter_complex", graph, "-map", "[v]", "-map", "2:a", *encoder_args(final),

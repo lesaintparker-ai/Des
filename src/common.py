@@ -41,8 +41,9 @@ def words():
 _ANCHOR = re.compile(r"^@(.+?)(?:#(\d+))?([+-]\d+(?:\.\d+)?)?$")
 
 
-def T(value):
-    """Convertit une valeur de config (nombre ou ancre "@mot") en secondes narration."""
+def T(value, edge="start"):
+    """Convertit une valeur de config (nombre ou ancre "@mot") en secondes narration.
+    edge="end" renvoie la fin du mot au lieu de son début."""
     if isinstance(value, (int, float)):
         return float(value)
     m = _ANCHOR.match(value.strip())
@@ -50,11 +51,11 @@ def T(value):
         raise ValueError(f"Repère temporel invalide : {value!r}")
     target, occ, off = _norm(m.group(1)), int(m.group(2) or 1), float(m.group(3) or 0)
     count = 0
-    for w, s, _ in words():
+    for w, s, e in words():
         if _norm(w) == target:
             count += 1
             if count == occ:
-                return s + off
+                return (e if edge == "end" else s) + off
     raise KeyError(f"Mot introuvable dans les timestamps : {value!r}")
 
 

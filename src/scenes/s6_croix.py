@@ -93,7 +93,7 @@ class SceneCroix(Scene):
 
     def sfx_events(self):
         t0 = self.t("tension_from")
-        return [(t0, "rumble", -9.0, self.impact - t0 + 0.05), (self.impact - 0.01, "impact", -9.0)]
+        return [(t0, "rumble", -9.0, self.impact - t0 + 0.05), (self.impact - 0.01, "impact", -14.0)]
 
     def render(self, t):
         ctx = self.ctx

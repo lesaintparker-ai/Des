@@ -11,7 +11,7 @@ Fichier contrôlé : `output/final/retournez_evangile_eau_esprit_1080p.mp4` (ren
 | Audio | AAC-LC, 48 kHz, stéréo, 256 kb/s |
 | Durée | 64,84 s (intro 6,1 s + narration 54,1 s + respiration et maintien de l'écran final) |
 | Lecture | Décodage complet par FFmpeg sans erreur |
-| Loudness | −15,1 LUFS intégrés, crête −1,9 dBFS, LRA 6,8 LU |
+| Loudness | −15,1 LUFS intégrés, crête −2,0 dBFS |
 | Écrans noirs | Aucun involontaire ; seul le fondu de fin (64,67 → 64,84 s) est noir |
 | Fluidité | Écart médian entre images 1,0/255 ; pics uniquement aux transitions et à l'éclair voulu de la rupture des chaînes (43,5 s) |
 | Ressources originales | Inchangées (`sha256sum -c assets/CHECKSUMS.sha256` : OK) |
@@ -20,13 +20,14 @@ Fichier contrôlé : `output/final/retournez_evangile_eau_esprit_1080p.mp4` (ren
 | Synchronisation | Repères posés sur les timestamps mot à mot obtenus par transcription ElevenLabs (Scribe) de la voix fournie ; le texte transcrit correspond mot pour mot au script de référence |
 | Textes finaux | Lisibles en 1080p (vérifié sur image extraite à 60,5 s), affichés de 50,5 s à 63,6 s |
 | Coordonnées | Aucune adresse, lien, numéro ou compte inventé : appel générique « message privé » uniquement |
-| Voix / fond | Rapport voix ÷ (musique + effets) dans la bande 300 Hz – 4 kHz : médiane 17,7 dB sur les fenêtres de 0,4 s contenant de la voix |
+| Voix / fond | Rapport voix ÷ (musique + effets) dans la bande 300 Hz – 4 kHz : médiane 18,0 dB sur les fenêtres de 0,4 s contenant de la voix. Sur « l'œuvre du salut » (rupture des chaînes) : fond ≥ 5,5 dB sous la voix après la baisse de l'impact (−5 dB) et de l'accord musical |
+| Sous-titres | 20 lignes incrustées (Montserrat SemiBold 48 px, fond semi-transparent), texte du script de référence, calées sur les mots prononcés ; vérifiées sur images extraites (fonds clairs et sombres, écran final) ; export `.srt` |
 
 ## Points d'attention
 
 1. **Écoute humaine non réalisée.** L'environnement n'a pas de sortie audio : l'équilibre a été réglé par mesures
-   (loudness, rapport voix/fond par fenêtre). Points les plus serrés : la rupture des chaînes sur « l'œuvre du salut »
-   (vers 43,5 s, l'impact est volontairement synchronisé sur la phrase) et le sommet musical juste après. À écouter en priorité.
+   (loudness, rapport voix/fond par fenêtre). À écouter en priorité : la rupture des chaînes (vers 43,5 s, impact
+   synchronisé sur « l'œuvre du salut », abaissé de 5 dB) et « …transférés sur Lui » avec la montée de l'eau (vers 37,6 s).
 2. **Illustration manquante.** La « Bible ouverte entourée de fumée » prévue au storyboard n'était pas fournie. Elle est
    remplacée par une scène typographique (fumée, fragments rouges) puis un écran partagé Croix / baptême estompé, construit
    avec les illustrations originales. Si vous fournissez l'image, elle pourra être intégrée dans `s3_demi_evangile.py`.
