@@ -7,7 +7,7 @@ Journal des décisions validées par le client. Source de vérité pour tous les
 - [x] Phase 1 — Affiche officielle reçue (`references/affiche-officielle.jpg`)
 - [x] Phase 2-3 — Vidéos d'inspiration reçues et analysées (2 vidéos, terminé)
 - [x] Phase 4 — Médias : Porc au four (aucun média personnel ; 4 visuels de substitution fournis par le client)
-- [ ] Phase 5 — Médias : Volailles
+- [x] Phase 5 — Médias : Volailles (aucun média personnel ; 8 visuels de substitution fournis par le client, dont 1 doublon écarté)
 - [ ] Phase 6 — Médias : Accompagnements
 - [ ] Phase 7 — Médias : Boissons
 - [ ] Phase 8 — Inventaire
@@ -98,5 +98,21 @@ Aucun média personnel. Fichiers fournis par le client, d'origine inconnue (le n
 | `saute-revenir_photo-barquette-pimentee.jpg` | Photo | Sauté-revenir | 736×896, portrait | Porc avec couenne, sauce pimentée, barquette alu. Main et sol visibles. |
 | `saute-revenir_photo-plat-oignons-poivrons.jpg` | Photo | Sauté-revenir | 735×920, portrait | Morceaux frits sautés aux oignons et poivrons, sauces en arrière-plan. |
 | `cuisson_video-poele-viande-sauce.mp4` | Vidéo | Plan de cuisson (viande non identifiable avec certitude) | 720×1280, 9:16, 30 i/s, 4,1 s | Plan fixe, vapeur. Utilisable en fond / transition. |
+
+### Volailles — `medias/substitution/volailles/`
+Aucun média personnel. Même origine (Pinterest / Klickpin) : **licence non vérifiée**. La race (chair, pondeuse, africain) n'est pas identifiable sur une volaille cuite : l'attribution ci-dessous se fait par la présentation, à confirmer. **Aucune image ne montre une pintade de façon identifiable.**
+
+| Fichier | Type | Plat proposé (à confirmer) | Format | Remarques |
+|---|---|---|---|---|
+| `demi-poulet_photo-deux-demis-planche.jpg` | Photo | Demi-poulet | 736×911, portrait | Deux demi-poulets grillés, sauce verte, planche. Très appétissant. (Envoyée 2 fois, doublon écarté.) |
+| `poulet-de-chair_photo-cuisses-poele-fonte.jpg` | Photo | Poulet de chair | 736×1104, portrait | Cuisses dorées en poêle fonte, ail, romarin. Rendu très « studio ». |
+| `poulet-pondeuse_photo-barquette-morceaux.jpg` | Photo | Poulet pondeuse | 736×736, carré | Morceaux grillés en barquette. Logo « SIEMENS » visible en haut : à recadrer. |
+| `poulet-africain_photo-grille-braise-morceaux.jpg` | Photo | Poulet africain | 577×1026, 9:16 | Nombreux morceaux braisés sur grille. Résolution faible. |
+| `poulet-africain_photo-entier-ouvert-grille.jpg` | Photo | Poulet africain (ou braisé entier) | 736×921, portrait | Volaille entière ouverte sur grille au-dessus des braises. |
+| `volaille_photo-morceaux-papier-alu.jpg` | Photo | Réserve | 736×1308, 9:16 | Morceaux laqués sur papier alu froissé. Moins valorisant. |
+| `volailles_video-grille-fumee-braises.mp4` | Vidéo | Ouverture de la séquence volailles | 720×1280, 9:16, 30 i/s, 11,3 s | Morceaux sur grille, fumée, braises rouges, léger mouvement caméra. Excellent plan d'ambiance. |
+| `volailles_video-grill-de-rue-poulets-brochettes.mp4` | Vidéo | Ambiance grillade | 720×1280, 9:16, 30 i/s, 4,1 s | Grill de rue : poulets entiers et brochettes, une personne attise. Personnes visibles (torses) : recadrer sur la nourriture. |
+
+Manquant : **Pintade** (aucun visuel identifiable).
 
 Banques d'images (Pexels, Pixabay, Unsplash, Wikimedia) : bloquées par la politique réseau de l'environnement au moment de la collecte.
