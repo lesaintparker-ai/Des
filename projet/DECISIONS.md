@@ -6,7 +6,7 @@ Journal des décisions validées par le client. Source de vérité pour tous les
 
 - [x] Phase 1 — Affiche officielle reçue (`references/affiche-officielle.jpg`)
 - [x] Phase 2-3 — Vidéos d'inspiration reçues et analysées (2 vidéos, terminé)
-- [ ] Phase 4 — Médias : Porc au four
+- [x] Phase 4 — Médias : Porc au four (aucun média personnel ; 4 visuels de substitution fournis par le client)
 - [ ] Phase 5 — Médias : Volailles
 - [ ] Phase 6 — Médias : Accompagnements
 - [ ] Phase 7 — Médias : Boissons
@@ -84,3 +84,19 @@ Attiéké, Frites, Pain — aucun prix affiché.
 - ~4-5 s par scène. Palette orange à transposer en bordeaux/noir/or.
 
 **Piste** : vidéo 2 pour l'ouverture et la fin, vidéo 1 pour les plats et les prix.
+
+## Médias
+
+Règle (client) : sans média personnel, utiliser des visuels de substitution réalistes (banques libres de droits à usage commercial, licences adaptées ou IA), fidèles au plat, et **ne jamais les présenter comme des photos authentiques** du restaurant.
+
+### Porc au four — `medias/substitution/porc-au-four/`
+Aucun média personnel. Fichiers fournis par le client, d'origine inconnue (le nom d'origine de la vidéo indique un téléchargement via Klickpin, outil Pinterest) : **licence non vérifiée**.
+
+| Fichier | Type | Plat proposé (à confirmer) | Format | Remarques |
+|---|---|---|---|---|
+| `choukouya_photo-plaque-four-oignons.jpg` | Photo | Choukouya | 736×981, portrait | Porc rôti au four, oignons, herbes. Résolution < 1080 px. |
+| `saute-revenir_photo-barquette-pimentee.jpg` | Photo | Sauté-revenir | 736×896, portrait | Porc avec couenne, sauce pimentée, barquette alu. Main et sol visibles. |
+| `saute-revenir_photo-plat-oignons-poivrons.jpg` | Photo | Sauté-revenir | 735×920, portrait | Morceaux frits sautés aux oignons et poivrons, sauces en arrière-plan. |
+| `cuisson_video-poele-viande-sauce.mp4` | Vidéo | Plan de cuisson (viande non identifiable avec certitude) | 720×1280, 9:16, 30 i/s, 4,1 s | Plan fixe, vapeur. Utilisable en fond / transition. |
+
+Banques d'images (Pexels, Pixabay, Unsplash, Wikimedia) : bloquées par la politique réseau de l'environnement au moment de la collecte.
