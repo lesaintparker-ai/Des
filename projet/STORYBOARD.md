@@ -1,6 +1,24 @@
 # Storyboard — BRUNCH ENTRE'AMIS · Concept A « LE GRILL SIGNATURE »
 
-Statut : **en attente de validation du client** (phase 12).
+Statut : **validé**. La vidéo produite est la **version longue de 78 s** calée sur la voix off du client (chronologie ci-dessous) ; le contenu des scènes reste celui décrit plus bas.
+
+## Chronologie de la version longue (voix off client)
+
+| Temps vidéo | Scène | Voix off |
+|---|---|---|
+| 0:00 – 0:04,4 | Accroche sur la grille fumante | « Hééé, mes gars, mes go, les amis ! Vous êtes prêts ? » |
+| 0:04,4 – 0:08,8 | Date (SAMEDI 31 OCTOBRE) puis logo et « BRUNCH ENTRE'AMIS » | « Le samedi 31 octobre, on se retrouve où ? Chez BRUNCH ENTRE'AMIS ! » |
+| 0:08,8 – 0:11,3 | Étiquette PORC AU FOUR | « Au menu, on a le bon porc au four ! » |
+| 0:11,3 – 0:17,4 | Choukouya, Sauté-revenir | prix des deux plats |
+| 0:17,4 – 0:20,6 | Plan de cuisson, « ÇA DONNE FAIM ! » | « Rien que d'en parler, ça donne faim ! » |
+| 0:20,6 – 0:35,3 | Étiquette VOLAILLES puis les 5 volailles | « Et ce n'est pas fini… » + 5 prix |
+| 0:35,3 – 0:39,1 | Accompagnements | « Pour accompagner tout ça… » |
+| 0:39,1 – 1:01,1 | Étiquette BOISSONS puis les 7 boissons | « Côté boissons, écoutez bien les prix ! » + 7 prix |
+| 1:01,1 – 1:02,5 | « ALORS, NOTEZ BIEN ! » | « Alors, notez bien ! » |
+| 1:02,5 – 1:07,4 | RENDEZ-VOUS : SAMEDI 31 OCTOBRE 2026, AKEKOI VILLAGE, Terrain de football | date et lieu |
+| 1:07,4 – 1:10,6 | CONTACTEZ-NOUS + 3 numéros | « Pour les renseignements… » |
+| 1:10,6 – 1:18,0 | Écran final : logo, marque, date, lieu, contacts | « BRUNCH ENTRE'AMIS ! Le 31 octobre, on s'y retrouve ! » |
+
 
 ## Paramètres
 

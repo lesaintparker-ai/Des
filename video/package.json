@@ -1,0 +1,24 @@
+{
+  "name": "brunch-entreamis-pub",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Publicité motion design BRUNCH ENTRE'AMIS — événement du 31 octobre 2026",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "typecheck": "tsc --noEmit",
+    "render": "remotion render src/index.ts BrunchEntreAmis out/brunch-entreamis-1080x1920.mp4",
+    "still": "remotion still src/index.ts BrunchEntreAmis out/apercu.png"
+  },
+  "dependencies": {
+    "@fontsource/anton": "5.3.0",
+    "@fontsource/montserrat": "5.3.0",
+    "@remotion/cli": "4.0.538",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "remotion": "4.0.538"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.12",
+    "typescript": "5.6.3"
+  }
+}

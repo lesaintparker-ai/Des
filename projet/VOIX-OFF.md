@@ -60,3 +60,40 @@ Découpage mesuré automatiquement (silences > 0,35 s à −40 dB) — 7 phrases
 | 7. Final | 28,40 – 32,84 s | 4,4 s | 0:37,3 (scène 7) |
 
 Non vérifié à l'écoute par Claude (pas de lecture audio possible) : la prononciation de « Akékoï », « choukouya » et « Brunch » doit être validée par le client.
+
+---
+
+# Voix off retenue : fichier fourni par le client
+
+Fichier : `medias/audio/voix-off-client.mp3` — ElevenLabs, voix « Dave », MP3 mono 44,1 kHz, **74,8 s**. Script complet du client (version longue). La prise précédente générée par Claude est conservée pour mémoire : `medias/audio/voix-off-claude-v1-non-retenue.mp3`.
+
+## Transcription automatique (contrôle)
+
+Transcription hors ligne (Whisper small) découpée aux pauses. Les fautes d'orthographe viennent de la reconnaissance automatique, pas forcément de la voix.
+
+| # | Temps (fichier) | Phrase reconnue |
+|---|---|---|
+| 1 | 0,00 – 4,01 | Hééé, mes gars, mes go, les amis, vous êtes prêts ? |
+| 2 | 4,01 – 6,70 | Le samedi 31 octobre, on se retrouve où ? |
+| 3 | 6,70 – 8,35 | Chez Brunch Entre'Amis. |
+| 4 | 8,35 – 10,83 | Au menu, on a le bon porc au four. |
+| 5 | 10,83 – 16,97 | Le choukouya à partir de 2000 francs CFA et le sauté-revenir à partir de 2000 francs CFA aussi. |
+| 6 | 16,97 – 20,21 | Rien que d'en parler, ça donne faim. |
+| 7 | 20,21 – 21,54 | Et ce n'est pas fini. |
+| 8–12 | 21,54 – 34,86 | Demi-poulet **à** 3500 · chair 5000 · pondeuse 6000 · africain 7000 · pintade 8500 francs CFA. |
+| 13 | 34,86 – 38,70 | Pour accompagner tout ça, on a l'attiéké, les frites et le pain. |
+| 14 | 38,70 – 41,17 | Côté boissons, écoutez bien les prix. |
+| 15–21 | 41,17 – 60,69 | Bock 66 600 · Castel 600 · Beaufort 700 · kit Desperados de 3 bouteilles 2000 · vin Valpierre Kiravi 2500 · vin bouché 3500 · **sodas à partir de 500** francs CFA. |
+| 22 | 60,69 – 62,13 | Alors, notez bien. |
+| 23 | 62,13 – 66,98 | Samedi 31 octobre 2026, à Akekoi Village, au terrain de football. |
+| 24 | 66,98 – 70,19 | Pour les renseignements, contactez-nous aux numéros affichés à l'écran. |
+| 25 | 70,19 – 74,84 | Brunch Entre'Amis, le 31 octobre, on s'y retrouve, ne manquez pas ça. |
+
+Phrases du script absentes de la prise : « Chacun choisit selon son goût et son budget », « On mange bien, on se fait plaisir… », « BRUNCH ENTRE'AMIS vous donne rendez-vous ».
+
+## Écarts entre la voix et l'écran (à arbitrer par le client)
+
+- **Sodas** : la voix dit « à partir de 500 francs CFA » ; l'écran affiche « Tout à 500 FCFA » (décision validée).
+- **Demi-poulet** : la voix dit « à 3 500 » ; l'écran affiche « À partir de 3 500 FCFA » (affiche officielle).
+
+Correction possible : régénérer seulement ces deux phrases avec la même voix ; elles seront recollées aux mêmes endroits (21,54 s et 57,77 s du fichier).

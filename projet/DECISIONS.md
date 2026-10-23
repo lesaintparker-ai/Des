@@ -12,8 +12,9 @@ Journal des décisions validées par le client. Source de vérité pour tous les
 - [x] Phase 7 — Médias : Boissons (aucun média personnel ; 20 fichiers de substitution, dont 4 Heineken hors menu)
 - [x] Phase 8 — Inventaire
 - [x] Phase 9-10 — Direction artistique : concept A « LE GRILL SIGNATURE » validé
-- [ ] Phase 11-12 — Storyboard : rédigé (`STORYBOARD.md`), en attente de validation
-- [ ] Phase 13-16 — Développement, rendu, export, livraison
+- [x] Phase 11-12 — Storyboard validé ; version longue (78 s) calée sur la voix off du client
+- [x] Phase 13 — Projet Remotion (`video/`)
+- [ ] Phase 14-16 — Prévisualisation, export, contrôle, livraison
 
 ## Menu validé (textes exacts à afficher)
 
@@ -58,6 +59,12 @@ Attiéké, Frites, Pain — aucun prix affiché.
 - **Lieu : Akekoi Village, au terrain de football.**
 - Date et lieu mis en valeur dans une séquence dédiée **et** sur l'écran final, avec « CONTACTEZ-NOUS » et les 3 numéros.
 - Accroche validée : n° 1 (« Ce soir, on se retrouve chez BRUNCH ENTRE'AMIS ? »), adaptation proposée pour une diffusion avant le jour J : « Samedi 31 octobre… on se retrouve chez BRUNCH ENTRE'AMIS ? ».
+
+## Voix off et durée
+
+- Voix off retenue : celle fournie par le client (`medias/audio/voix-off-client.mp3`, 74,8 s, script complet). La vidéo passe à **78 s** et suit l'ordre de la voix (date et lieu annoncés au début, repris en grand avant l'écran final).
+- Pintade : aucune génération d'image IA disponible (Canva désactivé par l'administrateur, Figma en siège « lecture seule ») → illustration graphique stylisée, sans photo trompeuse.
+- Musique : piste provisoire synthétisée pour le projet (libre de droits), à remplacer si le client fournit une musique sous licence.
 
 ## Décisions du client
 
