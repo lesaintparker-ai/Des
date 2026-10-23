@@ -10,7 +10,7 @@ Journal des décisions validées par le client. Source de vérité pour tous les
 - [x] Phase 5 — Médias : Volailles (aucun média personnel ; 8 visuels de substitution fournis par le client, dont 1 doublon écarté)
 - [x] Phase 6 — Médias : Accompagnements (aucun média personnel ; 4 visuels de substitution identifiés par le client)
 - [x] Phase 7 — Médias : Boissons (aucun média personnel ; 20 fichiers de substitution, dont 4 Heineken hors menu)
-- [ ] Phase 8 — Inventaire
+- [x] Phase 8 — Inventaire
 - [ ] Phase 9-10 — Direction artistique (3 concepts, validation)
 - [ ] Phase 11-12 — Storyboard (validation)
 - [ ] Phase 13-16 — Développement, rendu, export, livraison
@@ -59,6 +59,11 @@ Attiéké, Frites, Pain — aucun prix affiché.
 4. **Photos de l'affiche** : réutilisables comme éléments visuels complémentaires ; les médias originaux du client restent prioritaires pour présenter les plats.
 5. **Noms conservés tels que l'affiche** : « CHOUKOUYA », « Vin Valpiere kiravi » (jusqu'à nouvel ordre).
 6. **Pintade** : orthographe de l'affiche (« Pintade »).
+7. **Images des boissons (vins, sodas, Desperados, Valpierre, Beaufort, etc.)** : validées par le client comme illustrations des boissons proposées. **Utiliser les fichiers originaux tels quels** : aucune image remplacée, supprimée, retouchée ou régénérée ; marques, étiquettes, bouteilles et compositions conservées. Seuls autorisés : animation, cadrage nécessaire à la composition, transitions, lumière générale du montage, mise en page.
+8. **Mention « Photos non contractuelles »** : retirée.
+9. **Heineken** : absente de l'affiche, non utilisée (fichiers dans `medias/hors-menu/`).
+10. **Texte Valpiere** : conserver « Vin Valpiere kiravi » comme sur l'affiche (décision n° 5).
+11. **Décisions par défaut appliquées** : correspondances porc/volailles proposées ; attiéké = photo de l'assiette rayée en principal, photo du bol en secondaire ; Beaufort = bouteille et canette ; Pintade (aucun visuel) = visuel réaliste généré par IA, jamais présenté comme un plat du restaurant ; logo redessiné fidèlement à partir de l'affiche faute de fichier HD.
 
 ## Identité visuelle (d'après l'affiche)
 
