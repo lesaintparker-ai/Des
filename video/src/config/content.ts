@@ -27,11 +27,24 @@ export const DURATION_S = 78;
 
 const SUB = 'substitution';
 
-export const PORC = [
+export type DishVideo = {src: string; startFrom: number; playbackRate?: number; objectPosition?: string};
+
+export const PORC: {
+	name: string;
+	price: Price;
+	photo: string;
+	video?: DishVideo;
+	extra?: string;
+	start: number;
+	end: number;
+}[] = [
 	{
 		name: 'CHOUKOUYA',
 		price: FCFA('2 000', 'À partir de'),
 		photo: `${SUB}/porc-au-four/choukouya_photo-plaque-four-oignons.jpg`,
+		// Vidéo fournie par le client (porc braisé sur plaque) : cadrée sur la viande.
+		video: {src: 'porc-au-four-client/choukouya_video-plaque-nuit.mp4', startFrom: 0, playbackRate: 0.75, objectPosition: '50% 90%'},
+		extra: `${SUB}/porc-au-four/choukouya_photo-plaque-four-oignons.jpg`,
 		start: vo(10.9),
 		end: vo(13.6),
 	},
@@ -39,7 +52,9 @@ export const PORC = [
 		name: 'SAUTÉ-REVENIR',
 		price: FCFA('2 000', 'À partir de'),
 		photo: `${SUB}/porc-au-four/saute-revenir_photo-plat-oignons-poivrons.jpg`,
-		extra: `${SUB}/porc-au-four/saute-revenir_photo-barquette-pimentee.jpg`,
+		// Vidéo TikTok fournie par le client (@ririfoodci) : filigrane laissé visible.
+		video: {src: 'porc-au-four-client/saute-revenir_video-marmite-tiktok-ririfoodci.mp4', startFrom: 2.4, objectPosition: '50% 91%'},
+		extra: `${SUB}/porc-au-four/saute-revenir_photo-plat-oignons-poivrons.jpg`,
 		start: vo(13.6),
 		end: vo(16.97),
 	},
@@ -204,5 +219,7 @@ export const VIDEOS = {
 	grilleFumee: `${SUB}/volailles/volailles_video-grille-fumee-braises.mp4`,
 	grillRue: `${SUB}/volailles/volailles_video-grill-de-rue-poulets-brochettes.mp4`,
 	cuisson: `${SUB}/porc-au-four/cuisson_video-poele-viande-sauce.mp4`,
+	// Plan « ça donne faim » : vidéo du sauté-revenir (avant l'écran de fin TikTok à 11,5 s).
+	sauteRevenir: 'porc-au-four-client/saute-revenir_video-marmite-tiktok-ririfoodci.mp4',
 	desperados: `${B}/desperados_video-bouteille-main-toit-crepuscule.mp4`,
 };

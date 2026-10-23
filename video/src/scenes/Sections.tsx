@@ -56,12 +56,13 @@ export const CategoryIntro: React.FC<{
 };
 
 // « Rien que d'en parler… ça donne faim ! » sur le plan de cuisson.
-export const Faim: React.FC<{duration: number; video: string}> = ({duration, video}) => {
+export const Faim: React.FC<{duration: number; video: string; startFrom?: number}> = ({duration, video, startFrom = 0}) => {
 	const frame = useCurrentFrame();
+	const {fps} = useVideoConfig();
 	return (
 		<AbsoluteFill style={{opacity: fadeInOut(frame, duration, 1, 5), backgroundColor: COLORS.noir}}>
 			<AbsoluteFill style={{transform: `scale(${interpolate(frame, [0, duration], [1.05, 1.22])})`}}>
-				<OffthreadVideo src={staticFile(video)} muted style={{width: '100%', height: '100%', objectFit: 'cover'}} />
+				<OffthreadVideo src={staticFile(video)} startFrom={sec(startFrom, fps)} muted style={{width: '100%', height: '100%', objectFit: 'cover'}} />
 			</AbsoluteFill>
 			<AbsoluteFill style={{background: 'linear-gradient(180deg, rgba(14,5,7,0.2) 30%, rgba(14,5,7,0.92) 100%)'}} />
 			<Vignette strength={0.7} />

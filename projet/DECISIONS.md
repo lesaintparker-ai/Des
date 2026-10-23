@@ -120,6 +120,13 @@ Aucun média personnel. Fichiers fournis par le client, d'origine inconnue (le n
 | `saute-revenir_photo-plat-oignons-poivrons.jpg` | Photo | Sauté-revenir | 735×920, portrait | Morceaux frits sautés aux oignons et poivrons, sauces en arrière-plan. |
 | `cuisson_video-poele-viande-sauce.mp4` | Vidéo | Plan de cuisson (viande non identifiable avec certitude) | 720×1280, 9:16, 30 i/s, 4,1 s | Plan fixe, vapeur. Utilisable en fond / transition. |
 
+### Porc au four — vidéos fournies par le client — `medias/porc-au-four-client/`
+
+| Fichier | Plat | Format | Remarques |
+|---|---|---|---|
+| `choukouya_video-plaque-nuit.mp4` | Choukouya (porc braisé) | 480×856, 30 i/s, 7,7 s | Cuisson de nuit sur plaque, oignons. Une personne (cuisinier) apparaît : cadrage sur la viande, ralenti à 75 %. Basse résolution. |
+| `saute-revenir_video-marmite-tiktok-ririfoodci.mp4` | Sauté-revenir | 1080×1920, 30 i/s, 17,5 s | Vidéo TikTok du créateur **@ririfoodci** (filigranes TikTok et CapCut, écran de fin TikTok à 11,5 s). Utilisée de 2,4 à 5,8 s (carte du plat) et de 7,5 à 10,7 s (« ça donne faim »). Filigrane laissé visible. **Autorisation du créateur à obtenir avant diffusion.** |
+
 ### Volailles — `medias/substitution/volailles/`
 Aucun média personnel. Même origine (Pinterest / Klickpin) : **licence non vérifiée**. La race (chair, pondeuse, africain) n'est pas identifiable sur une volaille cuite : l'attribution ci-dessous se fait par la présentation, à confirmer. **Aucune image ne montre une pintade de façon identifiable.**
 

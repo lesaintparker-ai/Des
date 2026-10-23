@@ -44,7 +44,7 @@ export const BrunchVideo: React.FC = () => {
 				</Sequence>
 			))}
 			<Sequence {...span(T.faim.start, T.faim.end)} name="Ça donne faim">
-				<Faim duration={dur(T.faim.start, T.faim.end)} video={VIDEOS.cuisson} />
+				<Faim duration={dur(T.faim.start, T.faim.end)} video={VIDEOS.sauteRevenir} startFrom={7.5} />
 			</Sequence>
 			<Sequence {...span(T.volaillesLabel.start, T.volaillesLabel.end)} name="4. Volailles">
 				<CategoryIntro

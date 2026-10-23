@@ -1,6 +1,6 @@
 import React from 'react';
-import {AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig} from 'remotion';
-import type {Price} from '../config/content';
+import {AbsoluteFill, OffthreadVideo, interpolate, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
+import type {DishVideo, Price} from '../config/content';
 import {COLORS, FONTS} from '../config/theme';
 import {Background} from './Background';
 import {PintadeIllustration} from './Logo';
@@ -15,12 +15,13 @@ export const DishCard: React.FC<{
 	name: string;
 	price: Price;
 	photo: string | null;
+	video?: DishVideo;
 	extra?: string;
 	objectPosition?: string;
 	from?: Dir;
 	duration: number;
 	highlight?: boolean;
-}> = ({category, name, price, photo, extra, objectPosition, from = 'top', duration, highlight}) => {
+}> = ({category, name, price, photo, video, extra, objectPosition, from = 'top', duration, highlight}) => {
 	const frame = useCurrentFrame();
 	const {fps} = useVideoConfig();
 	const enter = pop(frame, fps, 0, 14);
@@ -45,7 +46,27 @@ export const DishCard: React.FC<{
 					filter: `blur(${blur}px)`,
 				}}
 			>
-				{photo ? (
+				{video ? (
+					<div
+						style={{
+							width: W,
+							height: W,
+							borderRadius: 60,
+							overflow: 'hidden',
+							border: `5px solid ${COLORS.or}`,
+							boxShadow: '0 30px 80px rgba(0,0,0,0.6)',
+							background: COLORS.noir,
+						}}
+					>
+						<OffthreadVideo
+							src={staticFile(video.src)}
+							startFrom={Math.round(video.startFrom * fps)}
+							playbackRate={video.playbackRate ?? 1}
+							muted
+							style={{width: '100%', height: '100%', objectFit: 'cover', objectPosition: video.objectPosition ?? '50% 50%'}}
+						/>
+					</div>
+				) : photo ? (
 					<Photo src={photo} width={W} height={W} radius={60} objectPosition={objectPosition} duration={duration} />
 				) : (
 					<div
