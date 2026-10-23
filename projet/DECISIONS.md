@@ -8,7 +8,7 @@ Journal des décisions validées par le client. Source de vérité pour tous les
 - [x] Phase 2-3 — Vidéos d'inspiration reçues et analysées (2 vidéos, terminé)
 - [x] Phase 4 — Médias : Porc au four (aucun média personnel ; 4 visuels de substitution fournis par le client)
 - [x] Phase 5 — Médias : Volailles (aucun média personnel ; 8 visuels de substitution fournis par le client, dont 1 doublon écarté)
-- [ ] Phase 6 — Médias : Accompagnements
+- [x] Phase 6 — Médias : Accompagnements (aucun média personnel ; 4 visuels de substitution identifiés par le client)
 - [ ] Phase 7 — Médias : Boissons
 - [ ] Phase 8 — Inventaire
 - [ ] Phase 9-10 — Direction artistique (3 concepts, validation)
@@ -114,5 +114,15 @@ Aucun média personnel. Même origine (Pinterest / Klickpin) : **licence non vé
 | `volailles_video-grill-de-rue-poulets-brochettes.mp4` | Vidéo | Ambiance grillade | 720×1280, 9:16, 30 i/s, 4,1 s | Grill de rue : poulets entiers et brochettes, une personne attise. Personnes visibles (torses) : recadrer sur la nourriture. |
 
 Manquant : **Pintade** (aucun visuel identifiable).
+
+### Accompagnements — `medias/substitution/accompagnements/`
+Identification fournie par le client. Origine inconnue : **licence non vérifiée**.
+
+| Fichier | Type | Plat (client) | Format | Remarques |
+|---|---|---|---|---|
+| `attieke_photo-bol-blanc-cuillere-bois.jpg` | Photo | Attiéké | 736×1104, portrait | Grain fin, régulier et jaune : ressemble davantage à de la semoule de couscous. À n'utiliser qu'en second plan, ou à remplacer. |
+| `attieke_photo-assiette-rayee-gros-plan.jpg` | Photo | Attiéké | 736×1308, 9:16 | Grain blanc irrégulier, typique de l'attiéké. **Visuel principal recommandé.** |
+| `pain_photo-trois-baguettes-fond-blanc.jpg` | Photo | Pain | 433×298, paysage | Baguettes sur fond blanc (facile à détourer). Très petite résolution : affichage réduit uniquement. |
+| `frites_photo-assiette-damier-incruste.jpg` | Photo | Frites | 736×736, carré | Le damier de « transparence » est incrusté dans le JPG (pas de vraie transparence) : détourage nécessaire. |
 
 Banques d'images (Pexels, Pixabay, Unsplash, Wikimedia) : bloquées par la politique réseau de l'environnement au moment de la collecte.
