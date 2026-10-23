@@ -1,4 +1,4 @@
-# BRUNCH ENTR'AMIS — Publicité motion design
+# BRUNCH ENTRE'AMIS — Publicité motion design
 
 Journal des décisions validées par le client. Source de vérité pour tous les textes de la vidéo.
 
@@ -11,8 +11,8 @@ Journal des décisions validées par le client. Source de vérité pour tous les
 - [x] Phase 6 — Médias : Accompagnements (aucun média personnel ; 4 visuels de substitution identifiés par le client)
 - [x] Phase 7 — Médias : Boissons (aucun média personnel ; 20 fichiers de substitution, dont 4 Heineken hors menu)
 - [x] Phase 8 — Inventaire
-- [ ] Phase 9-10 — Direction artistique (3 concepts, validation)
-- [ ] Phase 11-12 — Storyboard (validation)
+- [x] Phase 9-10 — Direction artistique : concept A « LE GRILL SIGNATURE » validé
+- [ ] Phase 11-12 — Storyboard : rédigé (`STORYBOARD.md`), en attente de validation
 - [ ] Phase 13-16 — Développement, rendu, export, livraison
 
 ## Menu validé (textes exacts à afficher)
@@ -50,6 +50,14 @@ Attiéké, Frites, Pain — aucun prix affiché.
 - +225 07 47 54 11 98
 - +225 07 67 03 95 24
 - +225 07 78 16 21 76
+
+## Événement (décision client — prioritaire sur l'affiche)
+
+- **Nom exact : BRUNCH ENTRE'AMIS** (remplace « ENTR'AMIS » de l'affiche, partout dans la vidéo).
+- **Date : 31 octobre 2026** (un samedi).
+- **Lieu : Akekoi Village, au terrain de football.**
+- Date et lieu mis en valeur dans une séquence dédiée **et** sur l'écran final, avec « CONTACTEZ-NOUS » et les 3 numéros.
+- Accroche validée : n° 1 (« Ce soir, on se retrouve chez BRUNCH ENTRE'AMIS ? »), adaptation proposée pour une diffusion avant le jour J : « Samedi 31 octobre… on se retrouve chez BRUNCH ENTRE'AMIS ? ».
 
 ## Décisions du client
 
