@@ -14,7 +14,7 @@ Journal des décisions validées par le client. Source de vérité pour tous les
 - [x] Phase 9-10 — Direction artistique : concept A « LE GRILL SIGNATURE » validé
 - [x] Phase 11-12 — Storyboard validé ; version longue (78 s) calée sur la voix off du client
 - [x] Phase 13 — Projet Remotion (`video/`)
-- [ ] Phase 14-16 — Prévisualisation, export, contrôle, livraison
+- [x] Phase 14-16 — Aperçus contrôlés, rendu et finalisation : `livraison/BRUNCH-ENTREAMIS-pub-31-octobre-2026.mp4` (1080×1920, 30 i/s, 78,1 s, H.264 yuv420p + AAC, -14,6 LUFS, crête -1,0 dBFS)
 
 ## Menu validé (textes exacts à afficher)
 

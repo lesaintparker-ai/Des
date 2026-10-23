@@ -24,6 +24,12 @@ npm run render
 # → out/brunch-entreamis-1080x1920.mp4
 ```
 
+Puis la finalisation (son à -14 LUFS, format de couleur standard) :
+
+```bash
+scripts/mastering.sh out/brunch-entreamis-1080x1920.mp4 out/BRUNCH-ENTREAMIS-pub-31-octobre-2026.mp4
+```
+
 Dans un environnement sans téléchargement de navigateur, indiquer un Chromium local :
 
 ```bash
