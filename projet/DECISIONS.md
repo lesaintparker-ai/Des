@@ -63,7 +63,8 @@ Attiéké, Frites, Pain — aucun prix affiché.
 ## Voix off et durée
 
 - Voix off retenue : celle fournie par le client (`medias/audio/voix-off-client.mp3`, 74,8 s, script complet). La vidéo passe à **78 s** et suit l'ordre de la voix (date et lieu annoncés au début, repris en grand avant l'écran final).
-- Pintade : aucune génération d'image IA disponible (Canva désactivé par l'administrateur, Figma en siège « lecture seule ») → illustration graphique stylisée, sans photo trompeuse.
+- Pintade : 2 photos fournies par le client (`substitution/volailles/pintade_photo-*.jpg`) remplacent l'illustration graphique provisoire.
+- Écran de marque (0:07) : « **AU** BRUNCH ENTRE'AMIS » au lieu de « CHEZ » (demande client). La voix off dit toujours « chez ».
 - Musique : piste provisoire synthétisée pour le projet (libre de droits), à remplacer si le client fournit une musique sous licence.
 
 ## Décisions du client
@@ -133,7 +134,7 @@ Aucun média personnel. Même origine (Pinterest / Klickpin) : **licence non vé
 | `volailles_video-grille-fumee-braises.mp4` | Vidéo | Ouverture de la séquence volailles | 720×1280, 9:16, 30 i/s, 11,3 s | Morceaux sur grille, fumée, braises rouges, léger mouvement caméra. Excellent plan d'ambiance. |
 | `volailles_video-grill-de-rue-poulets-brochettes.mp4` | Vidéo | Ambiance grillade | 720×1280, 9:16, 30 i/s, 4,1 s | Grill de rue : poulets entiers et brochettes, une personne attise. Personnes visibles (torses) : recadrer sur la nourriture. |
 
-Manquant : **Pintade** (aucun visuel identifiable).
+Pintade : `pintade_photo-entiere-carottes-pommes-de-terre.jpg` (1530×1024, visuel principal) et `pintade_photo-plateau-sauces.jpg` (519×591, médaillon), fournies par le client.
 
 ### Accompagnements — `medias/substitution/accompagnements/`
 Identification fournie par le client. Origine inconnue : **licence non vérifiée**.

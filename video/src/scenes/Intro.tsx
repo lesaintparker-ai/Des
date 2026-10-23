@@ -86,7 +86,7 @@ export const Hook: React.FC<{duration: number; pretsAt: number}> = ({duration, p
 	);
 };
 
-// Scène 2 — « Le samedi 31 octobre, on se retrouve où ? Chez BRUNCH ENTRE'AMIS ! »
+// Scène 2 — « Le samedi 31 octobre, on se retrouve où ? » → AU BRUNCH ENTRE'AMIS
 export const DateBrand: React.FC<{duration: number; questionAt: number; brandAt: number}> = ({duration, questionAt, brandAt}) => {
 	const frame = useCurrentFrame();
 	const {fps} = useVideoConfig();
@@ -129,7 +129,7 @@ export const DateBrand: React.FC<{duration: number; questionAt: number; brandAt:
 					<Logo size={300} />
 				</div>
 				<div style={{position: 'absolute', top: 700, width: '100%'}}>
-					<Headline text="CHEZ" size={90} color={COLORS.orClair} delay={brandF} />
+					<Headline text="AU" size={90} color={COLORS.orClair} delay={brandF} />
 					<BrandTitle delay={brandF + 2} size={200} stagger={1.2} />
 				</div>
 			</AbsoluteFill>

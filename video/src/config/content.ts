@@ -80,8 +80,9 @@ export const VOLAILLES = [
 	{
 		name: '1 PINTADE',
 		price: FCFA('8 500'),
-		// Aucun visuel réel : illustration graphique (voir PintadeIllustration).
-		photo: null,
+		photo: `${SUB}/volailles/pintade_photo-entiere-carottes-pommes-de-terre.jpg`,
+		objectPosition: '42% 50%',
+		extra: `${SUB}/volailles/pintade_photo-plateau-sauces.jpg`,
 		start: vo(32.09),
 		end: vo(34.86),
 	},
