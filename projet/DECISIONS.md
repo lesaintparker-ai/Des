@@ -9,7 +9,7 @@ Journal des décisions validées par le client. Source de vérité pour tous les
 - [x] Phase 4 — Médias : Porc au four (aucun média personnel ; 4 visuels de substitution fournis par le client)
 - [x] Phase 5 — Médias : Volailles (aucun média personnel ; 8 visuels de substitution fournis par le client, dont 1 doublon écarté)
 - [x] Phase 6 — Médias : Accompagnements (aucun média personnel ; 4 visuels de substitution identifiés par le client)
-- [ ] Phase 7 — Médias : Boissons
+- [x] Phase 7 — Médias : Boissons (aucun média personnel ; 20 fichiers de substitution, dont 4 Heineken hors menu)
 - [ ] Phase 8 — Inventaire
 - [ ] Phase 9-10 — Direction artistique (3 concepts, validation)
 - [ ] Phase 11-12 — Storyboard (validation)
@@ -124,5 +124,30 @@ Identification fournie par le client. Origine inconnue : **licence non vérifié
 | `attieke_photo-assiette-rayee-gros-plan.jpg` | Photo | Attiéké | 736×1308, 9:16 | Grain blanc irrégulier, typique de l'attiéké. **Visuel principal recommandé.** |
 | `pain_photo-trois-baguettes-fond-blanc.jpg` | Photo | Pain | 433×298, paysage | Baguettes sur fond blanc (facile à détourer). Très petite résolution : affichage réduit uniquement. |
 | `frites_photo-assiette-damier-incruste.jpg` | Photo | Frites | 736×736, carré | Le damier de « transparence » est incrusté dans le JPG (pas de vraie transparence) : détourage nécessaire. |
+
+### Boissons — `medias/substitution/boissons/`
+Identification fournie par le client. Visuels de marques (photos produits / publicités des marques), origine inconnue : **licence non vérifiée**.
+
+| Fichier | Type | Boisson | Format | Remarques |
+|---|---|---|---|---|
+| `desperados_video-bouteille-main-toit-crepuscule.mp4` | Vidéo | Kit Desperados (03) | 736×1056 (≈ 0,70), 30 i/s, 8,9 s | Main tenant une bouteille, toit-terrasse au crépuscule, caméra à la main. Ambiance « soirée entre amis ». |
+| `desperados_photo-seau-glace-bois.jpg` | Photo | Kit Desperados (03) | 540×960, 9:16 | Seau à glace sur bois, ~6 bouteilles (le kit en compte 3). |
+| `desperados_photo-bouteille-fond-bleu.jpg` | Photo | Kit Desperados (03) | 500×500 | Bouteille seule, fond uni à détourer. |
+| `beaufort_photo-bouteille-fond-gris.jpg` | Photo | Bière Beaufort | 736×1308 | Bouteille petite au centre d'un fond gris uni. |
+| `beaufort_photo-main-deux-bouteilles.jpg` | Photo | Bière Beaufort | 735×445, paysage | Visuel publicitaire de la marque (main, fond vert de ville). |
+| `beaufort_photo-canette.png` | Photo | Bière Beaufort | 1000×1000 | Canette 50 cl. Vérifier que le format vendu est bien la canette. |
+| `castel_photo-bouteille.jpg` | Photo | Bière Castel | 340×600 | Bouteille sur fond blanc. Petite résolution. |
+| `castel_logo.png` | Logo | Bière Castel | 1397×1356, transparent | Logo officiel de la marque. |
+| `bock_photo-gamme-fond-vert.jpg` | Photo | Bière Bock 66 | 447×447 | Gamme Bock (bouteilles, canette, chope). La mention « 66 » n'est pas lisible. |
+| `valpierre_photo-bouteille-et-casier.webp` | Photo | Vin Valpiere kiravi | 430×430 | Étiquette « VALPIERRE » (avec deux R). |
+| `valpierre_photo-bouteille-seule.jpg` | Photo | Vin Valpiere kiravi | 447×447 | Même bouteille, seule. |
+| `vin-bouche_photo-chateau-vieux-robin.jpg` | Photo | Vin bouché | 736×1104 | Médoc Cru Bourgeois, étiquette lisible. |
+| `vin-bouche_photo-montresor-corvina.jpg` | Photo | Vin bouché | 400×699 | Corvina Verona Montresor, étiquette lisible. |
+| `vin-bouche_photo-chateau-latour-2010.jpg` | Photo | Vin bouché | 610×1039 | Château Latour 2010, Premier Grand Cru Classé (vin de luxe). |
+| `soda_photo-sprite-coca-fanta-filigrane-alamy.jpg` | Photo | Soda | 498×615 | **Filigrane Alamy visible** (banque payante, non licenciée) : inutilisable tel quel. |
+| `soda_photo-gamme-marques-multiples.webp` | Photo | Soda | 1000×633, paysage | 13 marques (Coca-Cola, Pepsi, Dr Pepper, Mountain Dew, Lipton…), étiquettes étrangères. |
+
+### Hors menu — `medias/hors-menu/`
+**Heineken** n'apparaît pas sur l'affiche officielle : 1 vidéo (casier vu de dessus, 720×1280, 5,9 s) et 3 photos, mises de côté.
 
 Banques d'images (Pexels, Pixabay, Unsplash, Wikimedia) : bloquées par la politique réseau de l'environnement au moment de la collecte.
